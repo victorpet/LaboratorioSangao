@@ -28,12 +28,12 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
 
     @Override
     public void remover(Usuario m) {
-        UsuarioDAO.getInstance().remover(m);
+        bo.remover(m);
     }
 
     @Override
     public void atualizar(Usuario m) {
-        UsuarioDAO.getInstance().atualizar(m);
+        bo.atualizar(m);
     }
 
     @Override

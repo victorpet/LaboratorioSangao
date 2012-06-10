@@ -8,14 +8,11 @@ import br.com.self.sangao.entity.Usuario;
 import br.com.self.sangao.usuario.facade.UsuarioFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
