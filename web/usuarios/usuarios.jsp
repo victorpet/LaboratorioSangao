@@ -1,3 +1,5 @@
+<%@page import="br.com.self.sangao.entity.Usuario"%>
+<%@page import="java.util.List"%>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
@@ -6,6 +8,11 @@
 </div>
 
 <div class="clear"></div>
+
+<%  List<Object> list = (List<Object>) request.getAttribute("list"); %>
+
+<% if(list != null ){ 
+    if(list.size()>0){%>
 
 <form action="<% out.print(Utils.ABSOLUTEPATH);%>UsuariosServlet" method="post">
 
@@ -31,30 +38,37 @@
 
     <tbody>
 
+        <% for(Object o : list){ 
+            Usuario u = (Usuario) o;
+        %>
+                      
         <!--Linha para Registro !-->
         <tr>
 
             <!-- Checkbox!-->
             <td align="center">
-                <input type="checkbox" />
+                <input type="checkbox" name="ids[]" value="<% out.print(u.getId());%>"/>
             </td>
 
             <!--Nome do Usuário !-->
             <td class="principal">
-                Victor Pettengill Fernandes
+                <% out.print(u.getNome());%>
             </td>
 
             <!--Username !-->
             <td class="principal">
-                victor
+               <% out.print(u.getUsername());%>
             </td>
 
             <!--Password !-->
             <td class="principal">
-                123456
+                <% out.print(u.getSenha());%>
             </td>
 
-        </tr>
+        </tr>    
+            
+       <% }%>
+        
     </tbody>
 
 </table>
@@ -68,5 +82,12 @@
 </div>
     
 </form>
+
+<% }
+} else{ %>
+
+<div>Não Existem registros ainda</div>
+
+<% } %>
 
 <%@include file="../templates/trailer.jsp" %>
