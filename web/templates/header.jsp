@@ -52,7 +52,7 @@
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>pacientes/pacientes.jsp">Pacientes</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>medicos/medicos.jsp">Médicos</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados.jsp">Resultados</a></li>
-                        <li ><a href="javascript:void(0);">Exames</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>exames/exames.jsp">Exames</a></li>
                         <li ><a href="javascript:void(0);">Convênios</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>usuarios/usuarios.jsp">Usuários</a></li>
                     </ul>
