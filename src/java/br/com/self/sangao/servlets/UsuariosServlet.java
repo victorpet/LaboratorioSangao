@@ -38,10 +38,8 @@ public class UsuariosServlet extends HttpServlet {
         if (request.getParameter("acao").equals("list")) {
             
             request.setAttribute("list", UsuarioFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);
-            
+            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);   
         }
-        
     }
 
     /**

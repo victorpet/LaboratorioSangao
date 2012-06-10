@@ -2,21 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.self.sangao.dao;
+package br.com.self.sangao.paciente.dao;
 
+import br.com.self.sangao.dao.HibernateDAO;
 import java.util.List;
 
 /**
  *
  * @author prado
  */
-public class SangaoDAO extends HibernateDAO {
+public class PacienteDAO extends HibernateDAO {
 
-    private static SangaoDAO instance;
+    private static PacienteDAO instance;
 
-    public static SangaoDAO getDAO() {
+    public static PacienteDAO getDAO() {
         if (instance == null) {
-            instance = new SangaoDAO();
+            instance = new PacienteDAO();
         }
         return instance;
     }

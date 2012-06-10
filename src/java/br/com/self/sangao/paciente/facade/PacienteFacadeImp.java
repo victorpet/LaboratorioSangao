@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.self.sangao.facade;
+package br.com.self.sangao.paciente.facade;
 
-import br.com.self.sangao.bo.SangaoBO;
+import br.com.self.sangao.paciente.bo.PacienteBO;
 import br.com.self.sangao.entity.Entidade;
 import org.apache.log4j.Logger;
 
@@ -12,11 +12,11 @@ import org.apache.log4j.Logger;
  *
  * @author prado
  */
-public class SangaoFacadeImp implements ISangaoFacade {
+public class PacienteFacadeImp implements IPacienteFacade {
 
-    private static final Logger log = Logger.getLogger(SangaoFacadeImp.class);
+    private static final Logger log = Logger.getLogger(PacienteFacadeImp.class);
     
-    private static SangaoBO bo = new SangaoBO();
+    private static PacienteBO bo = new PacienteBO();
 
     @Override
     public boolean inserirRegistro(Entidade e) {

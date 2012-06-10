@@ -5,7 +5,7 @@
 package br.com.self.sangao.servlets;
 
 import br.com.self.sangao.entity.Paciente;
-import br.com.self.sangao.facade.SangaoFacade;
+import br.com.self.sangao.paciente.facade.PacienteFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,7 +50,7 @@ public class PacientesServlet extends HttpServlet {
             p.setDtNascimento(dt_nascimento);
             p.setTelefone(telefone);
 
-            boolean ok = SangaoFacade.getInstance().inserirRegistro(p);
+            boolean ok = PacienteFacade.getInstance().inserirRegistro(p);
 
             out.println("<html>");
             out.println("<head>");
