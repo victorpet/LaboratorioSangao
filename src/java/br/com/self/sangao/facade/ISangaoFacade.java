@@ -4,10 +4,13 @@
  */
 package br.com.self.sangao.facade;
 
+import br.com.self.sangao.entity.Entidade;
+
 /**
  *
  * @author prado
  */
 public interface ISangaoFacade {
     
+    public boolean inserirRegistro(Entidade e);
 }

@@ -4,8 +4,13 @@
  */
 package br.com.self.sangao.servlets;
 
+import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.facade.SangaoFacade;
+import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,16 +39,33 @@ public class PacientesServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /* TODO output your page here. You may use following sample code. */
+            String nome = request.getParameter("nome");
+            String endereco = request.getParameter("endereco");
+            Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
+            String telefone = request.getParameter("telefone");
+
+            Paciente p = new Paciente();
+            p.setNome(nome);
+            p.setEndereco(endereco);
+            p.setDtNascimento(dt_nascimento);
+            p.setTelefone(telefone);
+
+            boolean ok = SangaoFacade.getInstance().inserirRegistro(p);
+
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PacientesServlets</title>");            
+            out.println("<title>Servlet PacientesServlets</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PacientesServlets at " + request.getContextPath() + "</h1>");
+            if (ok) {
+                out.println("<h1>Registro inserido com sucesso!</h1>");
+            } else {
+                out.println("<h1>Erro ao inserir registro!</h1>");
+            }
             out.println("</body>");
             out.println("</html>");
-        } finally {            
+        } catch (ParseException e) {
+        } finally {
             out.close();
         }
     }

@@ -7,30 +7,35 @@ package br.com.self.sangao.dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import org.apache.log4j.Logger;
 
 /**
  *
- * @author treinamento
+ * @author prado
  */
-public abstract class  HibernateDAO {
+public abstract class HibernateDAO {
 
+    private static final Logger log = Logger.getLogger(HibernateDAO.class);
     EntityManager em;
 
     public HibernateDAO() {
     }
 
-    public void adicionar(Object o) {
+    public boolean adicionar(Object o) {
         em = PersistenceManager.getInstance().getConnection();
         EntityTransaction t = em.getTransaction();
         try {
             t.begin();
             em.persist(o);
             t.commit();
+            return true;
         } catch (Exception e) {
+            log.error(e);
             t.rollback();
         } finally {
             em.close();
         }
+        return false;
     }
 
     public void atualizar(Object o) {
@@ -41,6 +46,7 @@ public abstract class  HibernateDAO {
             em.merge(o);
             t.commit();
         } catch (Exception e) {
+            log.error(e);
             t.rollback();
         } finally {
             em.close();

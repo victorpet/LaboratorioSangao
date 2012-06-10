@@ -4,9 +4,8 @@
  */
 package br.com.self.sangao.usuario.facade;
 
-import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Usuario;
-import br.com.self.sangao.usuario.dao.UsuarioDAO;
+import br.com.self.sangao.usuario.bo.UsuarioBO;
 import java.util.List;
 
 /**
@@ -14,15 +13,17 @@ import java.util.List;
  * @author Victor
  */
 public class UsuarioFacadeImp implements IUsuarioFacade{
+    
+    UsuarioBO bo = new UsuarioBO();
 
     @Override
     public boolean isValid(Usuario usuario) {
-       return UsuarioDAO.getInstance().isValid(usuario);
+       return bo.isValid(usuario);
     }
 
     @Override
     public void adicionar(Usuario m) {
-        UsuarioDAO.getInstance().adicionar(m);
+        bo.adicionar(m);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
 
     @Override
     public List<Object> select() {
-        return UsuarioDAO.getInstance().select();
+        return bo.select();
     }
     
 }

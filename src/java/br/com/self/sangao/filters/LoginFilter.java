@@ -14,31 +14,34 @@ import javax.servlet.http.HttpSession;
 
 public class LoginFilter implements Filter {
 
-	public void destroy() {
-	}
+    @Override
+    public void destroy() {
+    }
 
-	public void doFilter(ServletRequest request, ServletResponse response,
-			FilterChain filter) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		HttpSession sessao = req.getSession();
-		boolean logado;
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response,
+            FilterChain filter) throws IOException, ServletException {
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession sessao = req.getSession();
+        boolean logado;
 
-		if (sessao.getAttribute("logado") == null)
-			logado = false;
-		else {
-			if (sessao.getAttribute("logado").equals("true"))
-				logado = true;
-			else
-				logado = false;
-		}
+        if (sessao.getAttribute("logado") == null) {
+            logado = false;
+        } else {
+            if (sessao.getAttribute("logado").equals("true")) {
+                logado = true;
+            } else {
+                logado = false;
+            }
+        }
 
-		if (!logado) {
-			res.sendRedirect("/LaboratorioSangao/login.html");
-		}
-	}
+        if (!logado) {
+            res.sendRedirect("/LaboratorioSangao/login.html");
+        }
+    }
 
-	public void init(FilterConfig arg0) throws ServletException {
-	}
-
+    @Override
+    public void init(FilterConfig arg0) throws ServletException {
+    }
 }

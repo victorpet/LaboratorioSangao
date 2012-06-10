@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Paciente.findByDtNascimento", query = "SELECT p FROM Paciente p WHERE p.dtNascimento = :dtNascimento"),
     @NamedQuery(name = "Paciente.findByEndereco", query = "SELECT p FROM Paciente p WHERE p.endereco = :endereco"),
     @NamedQuery(name = "Paciente.findByTelefone", query = "SELECT p FROM Paciente p WHERE p.telefone = :telefone")})
-public class Paciente implements Serializable {
+public class Paciente implements Serializable, Entidade {
     @Column(name = "dt_nascimento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtNascimento;
@@ -33,8 +33,8 @@ public class Paciente implements Serializable {
     private Collection<Convenio> convenioCollection;
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
+    @SequenceGenerator(name="seq", sequenceName="PACIENTE_ID_SEQ")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     @Column(name = "id")
     private Integer id;
     @Column(name = "nome")

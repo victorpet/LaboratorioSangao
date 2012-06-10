@@ -36,7 +36,7 @@
         <legend>Endereço *</legend>
         <br />
         <label>
-            <input type="text" name="senha"/>
+            <input type="text" name="endereco"/>
         </label>
         <br />
     </fieldset>
@@ -46,7 +46,7 @@
         <legend>Telefone *</legend>
         <br />
         <label>
-            <input type="text" name="senha"/>
+            <input type="text" name="telefone"/>
         </label>
         <br />
     </fieldset>

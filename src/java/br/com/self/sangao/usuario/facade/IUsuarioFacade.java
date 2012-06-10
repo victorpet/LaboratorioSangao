@@ -4,7 +4,6 @@
  */
 package br.com.self.sangao.usuario.facade;
 
-import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Usuario;
 import java.util.List;
 

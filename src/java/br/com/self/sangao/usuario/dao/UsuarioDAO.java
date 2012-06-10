@@ -17,16 +17,14 @@ import javax.persistence.Query;
 public class UsuarioDAO extends HibernateDAO {
 
     private static UsuarioDAO dao;
-    
-    public static UsuarioDAO getInstance(){
-        
-        if(dao == null){
+    public static UsuarioDAO getInstance() {
+
+        if (dao == null) {
             dao = new UsuarioDAO();
         }
-        
         return dao;
     }
-    
+
     @Override
     public List<Object> select() {
 
@@ -42,26 +40,26 @@ public class UsuarioDAO extends HibernateDAO {
 
         return list;
     }
-    
-    public boolean isValid(Usuario usuario){
-        
+
+    public boolean isValid(Usuario usuario) {
+
         boolean valid = false;
         List<Object> list = null;
-        
+
         try {
             Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Usuario.auth");
             query.setParameter("username", usuario.getUsername());
             query.setParameter("senha", usuario.getSenha());
             list = query.getResultList();
 
-            if(list.size()>0){
+            if (list.size() > 0) {
                 valid = true;
             }
-            
+
         } catch (Exception e) {
             System.out.println("Erro ao obter lista de Usuários");
         }
-        
+
         return valid;
     }
 }
