@@ -30,6 +30,9 @@ public class Medico implements Serializable {
     private Integer id;
     @Column(name = "nome")
     private String nome;
+    @Column(name = "crm")
+    private String crm;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMedico")
     private Collection<Exame> exameCollection;
 
@@ -88,6 +91,20 @@ public class Medico implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.Medico[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the crm
+     */
+    public String getCrm() {
+        return crm;
+    }
+
+    /**
+     * @param crm the crm to set
+     */
+    public void setCrm(String crm) {
+        this.crm = crm;
     }
     
 }

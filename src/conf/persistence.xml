@@ -7,6 +7,7 @@
     <class>br.com.self.sangao.entity.TipoExame</class>
     <class>br.com.self.sangao.entity.Paciente</class>
     <class>br.com.self.sangao.entity.Resultado</class>
+    <class>br.com.self.sangao.entity.Usuario</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/sangao"/>
