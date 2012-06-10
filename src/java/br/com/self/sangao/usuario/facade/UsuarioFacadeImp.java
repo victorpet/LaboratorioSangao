@@ -27,12 +27,12 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
 
     @Override
     public void remover(Usuario m) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UsuarioDAO.getInstance().remover(m);
     }
 
     @Override
     public void atualizar(Usuario m) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        UsuarioDAO.getInstance().atualizar(m);
     }
 
     @Override

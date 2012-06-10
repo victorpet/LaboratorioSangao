@@ -37,7 +37,7 @@ public class UsuarioDAO extends HibernateDAO {
             list = query.getResultList();
 
         } catch (Exception e) {
-            System.out.println("Erro ao obter lista de Usuários");
+           e.printStackTrace();
         }
 
         return list;

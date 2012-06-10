@@ -38,12 +38,9 @@ public class UsuariosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        response.getWriter().print("o0");
         if (request.getParameter("acao").equals("list")) {
             
-            HttpSession session = request.getSession();
-            session.setAttribute("list", UsuarioFacade.getInstance().select());
-            
+            request.setAttribute("list", UsuarioFacade.getInstance().select());
             getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);
             
         }
@@ -62,6 +59,18 @@ public class UsuariosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        if(request.getParameter("acao").equals("inserir")){
+            
+            Usuario u = new Usuario();
+            u.setNome(request.getParameter("nome"));
+            u.setUsername(request.getParameter("username"));
+            u.setSenha(request.getParameter("senha"));
+            
+            UsuarioFacade.getInstance().adicionar(u);
+            
+            response.sendRedirect(Utils.ABSOLUTEPATH+"UsuariosServlet?acao=list");
+        }
         
     }
 

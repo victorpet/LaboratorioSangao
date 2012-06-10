@@ -43,7 +43,7 @@
 
     <div style="text-align:right;">
         <label>
-            <input type="submit" name="acao" id="enviar" value="Inserir" />
+            <input type="submit" name="acao" id="enviar" value="inserir" />
         </label>
     </div>
 

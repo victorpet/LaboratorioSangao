@@ -34,8 +34,8 @@ public class PersistenceManager {
 
     private void createEntityManager() {
         HashMap<String, String> map = new HashMap<String, String>();
-        map.put("hibernate.connection.url", "");
-        map.put("hibernate.dialect", "");
+        map.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/sangao");
+        map.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         map.put("hibernate.connection.driver_class", "org.postgresql.Driver");
         map.put("hibernate.connection.username", "postgres");
         map.put("hibernate.connection.password", "postgres");
