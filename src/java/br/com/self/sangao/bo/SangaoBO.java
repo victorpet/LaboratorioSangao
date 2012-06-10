@@ -9,5 +9,5 @@ package br.com.self.sangao.bo;
  * @author prado
  */
 public class SangaoBO {
-    
+
 }

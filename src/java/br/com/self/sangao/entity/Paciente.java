@@ -26,6 +26,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Paciente.findByEndereco", query = "SELECT p FROM Paciente p WHERE p.endereco = :endereco"),
     @NamedQuery(name = "Paciente.findByTelefone", query = "SELECT p FROM Paciente p WHERE p.telefone = :telefone")})
 public class Paciente implements Serializable {
+    @Column(name = "dt_nascimento")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dtNascimento;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
+    private Collection<Convenio> convenioCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -34,9 +39,6 @@ public class Paciente implements Serializable {
     private Integer id;
     @Column(name = "nome")
     private String nome;
-    @Column(name = "dt_nascimento")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date dtNascimento;
     @Column(name = "endereco")
     private String endereco;
     @Column(name = "telefone")
@@ -123,6 +125,15 @@ public class Paciente implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.Paciente[ id=" + id + " ]";
+    }
+    
+    @XmlTransient
+    public Collection<Convenio> getConvenioCollection() {
+        return convenioCollection;
+    }
+
+    public void setConvenioCollection(Collection<Convenio> convenioCollection) {
+        this.convenioCollection = convenioCollection;
     }
     
 }

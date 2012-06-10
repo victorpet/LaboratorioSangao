@@ -10,6 +10,6 @@ package br.com.self.sangao.utils;
  */
 public class Utils {
     
-    public static final String ABSOLUTEPATH = "http://localhost:8084/LaboratorioSangao/";
+    public static final String ABSOLUTEPATH = "http://localhost:8080/LaboratorioSangao/";
     
 }
