@@ -24,7 +24,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Medico implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
     @Column(name = "id")
     private Integer id;
     @Column(name = "nome")
