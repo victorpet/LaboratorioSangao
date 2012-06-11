@@ -21,8 +21,8 @@ public class PacienteFacadeImp implements IPacienteFacade {
     private static PacienteBO bo = new PacienteBO();
 
     @Override
-    public boolean inserirRegistro(Entidade e) {
-        return bo.inserirRegistro(e);
+    public boolean inserirAtualizarRegistro(Entidade e) {
+        return bo.inserirAtualizarRegistro(e);
     }
 
     @Override

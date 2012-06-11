@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface IPacienteFacade {
     
-    public boolean inserirRegistro(Entidade e);
+    public boolean inserirAtualizarRegistro(Entidade e);
     
     public void remover(Integer id);
     

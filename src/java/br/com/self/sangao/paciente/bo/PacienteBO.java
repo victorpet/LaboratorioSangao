@@ -17,8 +17,8 @@ public class PacienteBO {
     
     PacienteDAO dao = PacienteDAO.getDAO();
 
-    public boolean inserirRegistro(Entidade e){
-        return dao.adicionar(e);
+    public boolean inserirAtualizarRegistro(Entidade e){
+        return dao.atualizar(e);
     }
     
     public void remover(Integer id){
