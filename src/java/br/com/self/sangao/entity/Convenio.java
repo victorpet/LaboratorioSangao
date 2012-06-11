@@ -126,5 +126,10 @@ public class Convenio implements Serializable, Entidade {
     public Object getID() {
         return matricula;
     }
+
+    @Override
+    public String getIndex() {
+        return "matricula";
+    }
     
 }

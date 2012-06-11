@@ -12,4 +12,6 @@ public interface Entidade {
     
     public Object getID();
     
+    public String getIndex();
+    
 }

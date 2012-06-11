@@ -6,6 +6,7 @@ package br.com.self.sangao.dao;
 
 import br.com.self.sangao.entity.Entidade;
 import java.util.List;
+import javax.persistence.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import org.apache.log4j.Logger;
@@ -89,4 +90,25 @@ public abstract class HibernateDAO<T> {
     }
 
     public abstract List<Object> select();
+    
+    public <T extends Entidade> Object select(Object obj, T o){
+        em = PersistenceManager.getInstance().getConnection();
+        EntityTransaction t = em.getTransaction();
+//        obj retorno = null;
+        T newO = null;
+        try {
+            StringBuilder str = new StringBuilder();
+            str.append("SELECT o FROM ").append(o.getClass().getSimpleName()).append(" o ");
+            str.append("WHERE ").append(o.getIndex()).append(" = :object");
+            Query query = PersistenceManager.getInstance().getConnection().createQuery(str.toString());
+            query.setParameter("object", obj);
+            newO = (T) query.getSingleResult();
+        } catch (Exception e) {
+            t.rollback();
+            log.error("Erro ao remover objeto", e);
+        } finally {
+            em.close();
+        }
+        return newO;
+    }
 }

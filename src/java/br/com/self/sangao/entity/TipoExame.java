@@ -94,5 +94,10 @@ public class TipoExame implements Serializable, Entidade {
     public Object getID() {
         return id;
     }
+
+    @Override
+    public String getIndex() {
+        return "id";
+    }
     
 }

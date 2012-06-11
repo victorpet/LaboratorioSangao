@@ -17,6 +17,7 @@ import javax.persistence.Query;
 public class UsuarioDAO extends HibernateDAO {
 
     private static UsuarioDAO dao;
+
     public static UsuarioDAO getInstance() {
 
         if (dao == null) {
@@ -35,7 +36,7 @@ public class UsuarioDAO extends HibernateDAO {
             list = query.getResultList();
 
         } catch (Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
         return list;

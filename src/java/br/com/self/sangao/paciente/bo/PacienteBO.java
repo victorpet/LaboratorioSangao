@@ -27,4 +27,8 @@ public class PacienteBO {
     public void remover(Paciente p){
         dao.remover(p);
     }
+    
+    public Paciente getPaciente(Integer id){
+        return (Paciente) dao.select(id, new Paciente());
+    }
 }

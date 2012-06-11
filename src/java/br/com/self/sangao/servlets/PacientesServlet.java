@@ -6,6 +6,7 @@ package br.com.self.sangao.servlets;
 
 import br.com.self.sangao.dao.HibernateDAO;
 import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.paciente.bo.PacienteBO;
 import br.com.self.sangao.paciente.facade.PacienteFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
@@ -80,6 +81,10 @@ public class PacientesServlet extends HttpServlet {
             String endereco = request.getParameter("endereco");
             Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
             String telefone = request.getParameter("telefone");
+//            
+//            PacienteBO bo = new PacienteBO();
+//            Paciente p = bo.getPaciente(150);
+//            System.out.print(p.getNome());
 
             Paciente p = new Paciente();
             p.setNome(nome);
