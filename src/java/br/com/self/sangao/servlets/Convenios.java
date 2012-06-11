@@ -4,8 +4,12 @@
  */
 package br.com.self.sangao.servlets;
 
+import br.com.self.sangao.convenio.facade.ConvenioFacade;
 import br.com.self.sangao.entity.Convenio;
 import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.entity.Usuario;
+import br.com.self.sangao.usuario.facade.UsuarioFacade;
+import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -34,10 +38,14 @@ public class Convenios extends HttpServlet {
             throws ServletException, IOException {
         
         if(request.getParameter("acao").equals("list")){
+            request.setAttribute("list", ConvenioFacade.getInstance().select());
            getServletContext().getRequestDispatcher("/convenios/convenios.jsp").forward(request, response);
         } else if(request.getParameter("acao").equals("inserir")){
            getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
-        }
+        } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
+            request.setAttribute("convenio", ConvenioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
+            getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
+        } 
         
     }
 
@@ -58,6 +66,17 @@ public class Convenios extends HttpServlet {
             
             Convenio c = new Convenio();
             
+        } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
+
+            String[] ids = request.getParameterValues("ids[]");
+
+            for (int i = 0; i < ids.length; i++) {
+                
+                ConvenioFacade.getInstance().remover(Integer.parseInt(ids[i]));
+                
+            }
+
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Convenios?acao=list");
         }
         
     }

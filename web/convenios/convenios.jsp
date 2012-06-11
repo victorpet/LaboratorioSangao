@@ -1,3 +1,5 @@
+<%@page import="br.com.self.sangao.entity.Convenio"%>
+<%@page import="java.util.List"%>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
@@ -7,6 +9,11 @@
 
 <div class="clear"></div>
 
+<%  List<Object> list = (List<Object>) request.getAttribute("list");%>
+
+<% if (list != null) {
+        if (list.size() > 0) {%>
+        
 <form action="<% out.print(Utils.ABSOLUTEPATH);%>Convenios" method="post">
 
     <table width="940" border="0" cellspacing="0" cellpadding="0" id="tableList">
@@ -47,40 +54,47 @@
 
         <tbody>
 
+            <% for (Object o : list) {
+                    Convenio u = (Convenio) o;
+            %>
+            
             <!--Linha para Registro !-->
             <tr>
 
                 <!-- Checkbox!-->
                 <td align="center">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="ids[]" value="<% out.print(u.getMatricula());%>"/>
                 </td>
 
                 <td class="principal">
-                    Paciente
+                    <% out.print(u.getIdPaciente().getNome());%>
                 </td>
 
                 <td class="principal">
-                    Natureza
+                    <% out.print(u.getNaturezaContratacao());%>
                 </td>
                 
                 <td class="principal">
-                    Acomodação
+                    <% out.print(u.getAcomodacao());%>
                 </td>
 
                 <td class="principal">
-                    Validade
+                    <% out.print(u.getValidade());%>
                 </td>
 
                 <td class="principal">
-                    Abrangência
+                    <% out.print(u.getAbrangencia());%>
                 </td>
 
                 <!--Editar !-->
                 <td class="principal">
-                    
+                    <a href="<% out.print(Utils.ABSOLUTEPATH+"Convenios?acao=editar&id="+u.getMatricula());%>">Editar</a>
                 </td>
 
             </tr>
+            
+             <% }%>
+             
         </tbody>
 
     </table>
@@ -94,5 +108,12 @@
     </div>
 
 </form>
+
+<% }
+} else {%>
+
+<div>Não Existem registros ainda</div>
+
+<% }%>
 
 <%@include file="../templates/trailer.jsp" %>

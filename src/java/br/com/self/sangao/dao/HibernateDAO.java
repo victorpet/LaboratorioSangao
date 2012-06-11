@@ -40,20 +40,21 @@ public abstract class HibernateDAO<T> {
         return false;
     }
 
-    public <T extends Entidade> void atualizar(Object obj, Class<T> classe) {
+    public void atualizar(Object o){
+        
         em = PersistenceManager.getInstance().getConnection();
         EntityTransaction t = em.getTransaction();
         try {
-            T o = em.find(classe, obj);
             t.begin();
             em.merge(o);
             t.commit();
         } catch (Exception e) {
             t.rollback();
-            log.error("Erro ao atualizar objeto", e);
+            log.error("Erro ao remover objeto", e);
         } finally {
             em.close();
         }
+        
     }
 
     public void remover(Object o) {

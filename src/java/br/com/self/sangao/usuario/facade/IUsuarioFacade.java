@@ -21,9 +21,9 @@ public interface IUsuarioFacade {
 
     public void remover(Usuario usuario);
 
-    public void remover(Object ob, Class classe);
+    public void remover(Object ob);
     
     public Usuario select(Integer id);
     
-    public void atualizar(Object ob, Class classe);
+    public void atualizar(Object ob);
 }
