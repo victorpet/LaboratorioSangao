@@ -95,7 +95,7 @@
                 
                 <!--Etiqueta !-->
                 <td class="principal">
-                    <a href="<% out.print(Utils.ABSOLUTEPATH+"Coletas?acao=editar&id="+c.getId());%>">Imprimir Etiqueta</a>
+                    <a href="<% out.print(Utils.ABSOLUTEPATH+"Coletas?acao=imprimir&id="+c.getId());%>">Imprimir Etiqueta</a>
                 </td>
 
             </tr>

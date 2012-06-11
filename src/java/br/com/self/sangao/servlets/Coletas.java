@@ -9,7 +9,6 @@ import br.com.self.sangao.entity.Coleta;
 import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.entity.TipoExame;
-import br.com.self.sangao.paciente.facade.PacienteFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.text.ParseException;
