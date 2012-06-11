@@ -37,8 +37,8 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
     }
 
     @Override
-    public void remover(Object ob, Class classe) {
-       bo.remover(ob, classe);
+    public void remover(Object ob) {
+       bo.remover(ob);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
     }
 
     @Override
-    public void atualizar(Object ob, Class classe) {
-        bo.atualizar(ob, classe);
+    public void atualizar(Object ob) {
+        bo.atualizar(ob);
     }
 
     

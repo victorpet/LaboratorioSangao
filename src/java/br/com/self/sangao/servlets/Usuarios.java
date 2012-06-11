@@ -59,15 +59,29 @@ public class Usuarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
+        if (request.getParameter("acao").equalsIgnoreCase("salvar")) {
 
+            String id = request.getParameter("id");
+            
+            if(id.equals("")){
+            
             Usuario u = new Usuario();
             u.setNome(request.getParameter("nome"));
             u.setUsername(request.getParameter("username"));
             u.setSenha(request.getParameter("senha"));
 
             UsuarioFacade.getInstance().adicionar(u);
-
+            
+            } else{
+                
+                Usuario u = new Usuario(Integer.parseInt(id));
+                u.setNome(request.getParameter("nome"));
+                u.setUsername(request.getParameter("username"));
+                u.setSenha(request.getParameter("senha"));
+                
+                UsuarioFacade.getInstance().atualizar(u);
+            }
+            
             response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
@@ -75,7 +89,7 @@ public class Usuarios extends HttpServlet {
 
             for (int i = 0; i < ids.length; i++) {
                 
-                UsuarioFacade.getInstance().remover(Integer.parseInt(ids[i]), Usuario.class);
+               
                 
             }
 

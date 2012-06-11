@@ -31,12 +31,12 @@ public class UsuarioBO {
         dao.remover(m);
     }
     
-    public void remover(Object ob, Class classe){
-        dao.remover(ob, classe);
+    public void remover(Object ob){
+        dao.remover(ob, Usuario.class);
     }
 
-    public void atualizar(Object ob, Class classe){
-        dao.atualizar(ob, classe);
+    public void atualizar(Object ob){
+        dao.atualizar(ob);
     }
 
     public Usuario select(Integer id){
