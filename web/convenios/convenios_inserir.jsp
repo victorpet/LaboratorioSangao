@@ -1,14 +1,46 @@
+<%@page import="br.com.self.sangao.entity.Paciente"%>
+<%@page import="br.com.self.sangao.paciente.facade.PacienteFacade"%>
+<%@page import="br.com.self.sangao.entity.Convenio"%>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
+<% 
+    Convenio convenio = (Convenio) request.getAttribute("convenio");
+%>
+
 <div class="tituloPagina">
-   INSERIR CONVÊNIO
+   <% 
+   
+    String matricula = "";
+    String idPaciente = "";
+    String natureza = "";
+    String acomodacao = "";
+    String validade = "";
+    String abrangencia = "";
+   
+    if(convenio == null) {
+        out.print("INSERIR CONVENIO");
+    } else{
+        matricula = ""+convenio.getMatricula();
+        idPaciente = ""+convenio.getIdPaciente().getId();
+        natureza = convenio.getNaturezaContratacao();
+        validade = Utils.FORMATADOR_DATA.format(convenio.getValidade());
+        acomodacao = convenio.getAcomodacao();
+        abrangencia = convenio.getAbrangencia();
+        
+        out.print("EDITAR CONVENIO");
+    }
+
+ 
+%>
 </div>
 
 <div class="clear"></div>
 
 <form action="<% out.print(Utils.ABSOLUTEPATH);%>Convenios" method="post">
 
+    <input type="hidden" name="matricula" value="<% out.print(matricula);%>">
+    
     <fieldset>
 
         <legend>Informações do Convênio</legend>
@@ -17,7 +49,9 @@
         <br />
         <label>
             <select name="paciente">
-                <option value="2"> COCO </option>
+                <% for(Paciente o : PacienteFacade.getInstance().getAllPacientes()) {%>
+                <option value="<% out.print(o.getId());%>" <% if(idPaciente != ""){if(o.getId() == Integer.parseInt(idPaciente)){out.print("selected='selected'");}}%>> <% out.print(o.getNome());%> </option>
+                <% }%>
             </select>
         </label>
         <br />
@@ -29,8 +63,8 @@
         <br />
         <label>
             <select name="natureza">
-                <option value="Pessoal"> Pessoal </option>
-                <option value="Empresario"> Empresarial </option>
+                <option value="Pessoal" <% if(natureza.equals("Pessoal")){out.print("selected='selected'");}%>> Pessoal </option>
+                <option value="Empresario" <% if(natureza.equals("Empresario")){out.print("selected='selected'");}%>> Empresarial </option>
             </select>
         </label>
         <br />
@@ -42,8 +76,8 @@
         <br />
         <label>
             <select name="acomodacao">
-                <option value="Individual"> Individual </option>
-                <option value="Coletiva"> Coletiva </option>
+                <option value="Individual" <% if(acomodacao.equals("Individual")){out.print("selected='selected'");}%>> Individual </option>
+                <option value="Coletiva" <% if(acomodacao.equals("Coletiva")){out.print("selected='selected'");}%>> Coletiva </option>
             </select>
         </label>
         <br />
@@ -54,7 +88,7 @@
         <legend>Validade</legend>
         <br />
         <label>
-            <input type="text" name="validade"/>
+            <input type="text" name="validade" value="<% out.print(validade);%>"/>
         </label>
         <br />
     </fieldset>
@@ -65,9 +99,9 @@
         <br />
         <label>
             <select name="abrangencia">
-                <option value="Municipal"> Municipal </option>
-                <option value="Estadual"> Estadual </option>
-                <option value="Nacional"> Nacional </option>
+                <option value="Municipal" <% if(abrangencia.equals("Municipal")){out.print("selected='selected'");}%>> Municipal </option>
+                <option value="Estadual" <% if(abrangencia.equals("Estadual")){out.print("selected='selected'");}%>> Estadual </option>
+                <option value="Nacional" <% if(abrangencia.equals("Nacional")){out.print("selected='selected'");}%>> Nacional </option>
             </select>
         </label>
         <br />
@@ -75,7 +109,7 @@
     
     <div style="text-align:right;">
         <label>
-            <input type="submit" name="acao" id="enviar" value="Inserir" />
+            <input type="submit" name="acao" id="enviar" value="Salvar" />
         </label>
     </div>
 

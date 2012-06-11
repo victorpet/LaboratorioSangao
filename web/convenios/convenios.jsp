@@ -109,7 +109,9 @@
 
 </form>
 
-<% }
+<% } else{
+        out.print("<div>Não Existem registros ainda</div>");    
+}
 } else {%>
 
 <div>Não Existem registros ainda</div>

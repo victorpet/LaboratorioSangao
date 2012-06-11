@@ -89,7 +89,7 @@ public class Usuarios extends HttpServlet {
 
             for (int i = 0; i < ids.length; i++) {
                 
-               
+               UsuarioFacade.getInstance().remover(ids[i]);
                 
             }
 
