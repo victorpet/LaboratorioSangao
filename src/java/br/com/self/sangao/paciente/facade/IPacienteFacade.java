@@ -6,6 +6,7 @@ package br.com.self.sangao.paciente.facade;
 
 import br.com.self.sangao.entity.Entidade;
 import br.com.self.sangao.entity.Paciente;
+import java.util.List;
 
 /**
  *
@@ -18,4 +19,8 @@ public interface IPacienteFacade {
     public void remover(Integer id);
     
     public void remover(Paciente p);
+    
+    public List<Paciente> getAllPacientes();
+    
+    public Paciente getPaciente(Integer id);
 }

@@ -49,7 +49,7 @@
                 <div class="menu">
                     <ul>
                         <li ><a href="javascript:void(0);">Inicio</a></li>
-                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>pacientes/pacientes.jsp">Pacientes</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes?acao=list">Pacientes</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>medicos/medicos.jsp">Médicos</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados.jsp">Resultados</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>exames/exames.jsp">Exames</a></li>

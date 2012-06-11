@@ -7,6 +7,7 @@ package br.com.self.sangao.paciente.bo;
 import br.com.self.sangao.paciente.dao.PacienteDAO;
 import br.com.self.sangao.entity.Entidade;
 import br.com.self.sangao.entity.Paciente;
+import java.util.List;
 
 /**
  *
@@ -30,5 +31,9 @@ public class PacienteBO {
     
     public Paciente getPaciente(Integer id){
         return (Paciente) dao.select(id, new Paciente());
+    }
+    
+    public List<Paciente> getAllPacientes(){
+        return dao.getAllPacientes();
     }
 }

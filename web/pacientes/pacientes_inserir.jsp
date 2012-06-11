@@ -7,7 +7,7 @@
 
 <div class="clear"></div>
 
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>PacientesServlet" method="post">
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes" method="post">
 
     <fieldset>
 

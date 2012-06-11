@@ -6,6 +6,7 @@ package br.com.self.sangao.servlets;
 
 import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.paciente.facade.PacienteFacade;
+import br.com.self.sangao.usuario.facade.UsuarioFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,36 +39,7 @@ public class Pacientes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            String nome = request.getParameter("nome");
-            String endereco = request.getParameter("endereco");
-            Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
-            String telefone = request.getParameter("telefone");
 
-            Paciente p = new Paciente();
-            p.setNome(nome);
-            p.setEndereco(endereco);
-            p.setDtNascimento(dt_nascimento);
-            p.setTelefone(telefone);
-
-            boolean ok = PacienteFacade.getInstance().inserirRegistro(p);
-
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PacientesServlets</title>");
-            out.println("</head>");
-            out.println("<body>");
-            if (ok) {
-                out.println("<h1>Registro inserido com sucesso!</h1>");
-            } else {
-                out.println("<h1>Erro ao inserir registro!</h1>");
-            }
-            out.println("</body>");
-            out.println("</html>");
-        } catch (ParseException e) {
-        } finally {
-            out.close();
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,6 +56,17 @@ public class Pacientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        if (request.getParameter("acao").equalsIgnoreCase("list")) {
+            request.setAttribute("list", PacienteFacade.getInstance().getAllPacientes());
+            getServletContext().getRequestDispatcher("/pacientes/pacientes.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
+            request.setAttribute("paciente", PacienteFacade.getInstance().getPaciente(Integer.parseInt(request.getParameter("id"))));
+            getServletContext().getRequestDispatcher("/pacientes/pacientes_inserir.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
+//            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+//        }
+        }
     }
 
     /**
@@ -99,6 +82,32 @@ public class Pacientes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        try {
+            String nome = request.getParameter("nome");
+            String endereco = request.getParameter("endereco");
+            Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
+            String telefone = request.getParameter("telefone");
+
+            Paciente p = new Paciente();
+            p.setNome(nome);
+            p.setEndereco(endereco);
+            p.setDtNascimento(dt_nascimento);
+            p.setTelefone(telefone);
+
+            boolean ok = PacienteFacade.getInstance().inserirRegistro(p);
+
+            if (ok) {
+                request.setAttribute("mensagem", "Paciente inserido com sucesso!");
+            } else {
+                request.setAttribute("mensagem", "Erro ao inserir paciente. Entre em contato com Victor Pet");
+            }
+            getServletContext().getRequestDispatcher("/pacientes/pacientes.jsp").forward(request, response);
+
+        } catch (ParseException e) {
+        } finally {
+//            out.close();
+        }
     }
 
     /**

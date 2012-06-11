@@ -7,6 +7,7 @@ package br.com.self.sangao.paciente.facade;
 import br.com.self.sangao.paciente.bo.PacienteBO;
 import br.com.self.sangao.entity.Entidade;
 import br.com.self.sangao.entity.Paciente;
+import java.util.List;
 import org.apache.log4j.Logger;
 
 /**
@@ -32,5 +33,15 @@ public class PacienteFacadeImp implements IPacienteFacade {
     @Override
     public void remover(Paciente p) {
         bo.remover(p);
+    }
+
+    @Override
+    public List<Paciente> getAllPacientes() {
+        return bo.getAllPacientes();
+    }
+
+    @Override
+    public Paciente getPaciente(Integer id) {
+        return bo.getPaciente(id);
     }
 }
