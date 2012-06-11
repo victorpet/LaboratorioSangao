@@ -63,9 +63,9 @@ public class Pacientes extends HttpServlet {
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("paciente", PacienteFacade.getInstance().getPaciente(Integer.parseInt(request.getParameter("id"))));
             getServletContext().getRequestDispatcher("/pacientes/pacientes_inserir.jsp").forward(request, response);
-        } //else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
-//            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
-//        }
+        } else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
+            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+        }
 
     }
 
@@ -111,6 +111,16 @@ public class Pacientes extends HttpServlet {
                     request.setAttribute("mensagem", "Erro ao salvar paciente. Entre em contato com Victor Pet");
                 }
                 getServletContext().getRequestDispatcher("/pacientes/pacientes.jsp").forward(request, response);
+                
+            } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
+
+                String[] ids = request.getParameterValues("ids[]");
+
+                for (int i = 0; i < ids.length; i++) {
+                    PacienteFacade.getInstance().remover(Integer.parseInt(ids[i]));
+                }
+
+                response.sendRedirect(Utils.ABSOLUTEPATH + "Pacientes?acao=list");
             }
 
         } catch (ParseException e) {

@@ -26,7 +26,7 @@
 <% if (list != null) {
         if (list.size() > 0) {%>
 
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>PacientesServlet" method="post">
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes" method="post">
 
     <table width="940" border="0" cellspacing="0" cellpadding="0" id="tableList">
 
@@ -61,7 +61,7 @@
             <tr>
                 <!-- Checkbox!-->
                 <td align="center">
-                    <input type="checkbox" />
+                    <input type="checkbox" name="ids[]" value="<% out.print(p.getId());%>"/>
                 </td>
 
                 <!--Nome!-->
