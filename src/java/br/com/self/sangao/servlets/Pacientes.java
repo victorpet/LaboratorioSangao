@@ -103,14 +103,9 @@ public class Pacientes extends HttpServlet {
                 p.setDtNascimento(dt_nascimento);
                 p.setTelefone(telefone);
 
-                ok = PacienteFacade.getInstance().inserirAtualizarRegistro(p);
+                PacienteFacade.getInstance().inserirAtualizarRegistro(p);
 
-                if (ok) {
-                    request.setAttribute("mensagem", "Paciente salvo com sucesso!");
-                } else {
-                    request.setAttribute("mensagem", "Erro ao salvar paciente. Entre em contato com Victor Pet");
-                }
-                getServletContext().getRequestDispatcher("/pacientes/pacientes.jsp").forward(request, response);
+                response.sendRedirect(Utils.ABSOLUTEPATH + "Pacientes?acao=list");
                 
             } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 

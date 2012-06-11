@@ -4,10 +4,6 @@
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
-<%
-    List<Paciente> list = PacienteFacade.getInstance().getAllPacientes();
-%>
-
 <div class="tituloPagina">
     PACIENTES - <a href="<% out.print(Utils.ABSOLUTEPATH);%>pacientes/pacientes_inserir.jsp">Inserir novo Paciente</a>
 </div>
@@ -23,8 +19,8 @@
 
 <%  List<Object> pacientes = (List<Object>) request.getAttribute("list");%>
 
-<% if (list != null) {
-        if (list.size() > 0) {%>
+<% if (pacientes != null) {
+        if (pacientes.size() > 0) {%>
 
 <form action="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes" method="post">
 
@@ -55,7 +51,7 @@
             <!--Linha para Registro !-->
 
 
-            <% for (Object o : list) {
+            <% for (Object o : pacientes) {
                     Paciente p = (Paciente) o;
             %>
             <tr>

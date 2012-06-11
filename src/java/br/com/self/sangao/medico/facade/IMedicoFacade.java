@@ -5,8 +5,13 @@ import java.util.List;
 
 public interface IMedicoFacade {
 
-	public List<Object> select();
-	public void adicionar(Medico m);
-        public void remover(Medico m);
-        public void atualizar(Medico m);
+    public List<Object> select();
+
+    public void adicionar(Medico m);
+
+    public void remover(Medico m);
+
+    public void atualizar(Medico m);
+    
+    public List<Medico> getAllMedicos();
 }

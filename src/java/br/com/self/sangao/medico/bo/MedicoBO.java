@@ -15,17 +15,17 @@ import org.apache.log4j.Logger;
  * @author prado
  */
 public class MedicoBO {
-    
+
     private static final Logger log = Logger.getLogger(UsuarioBO.class);
     
     MedicoDAO dao = MedicoDAO.getInstance();
-   
+
     public List<Object> select() {
         return dao.select();
     }
 
     public void adicionar(Medico m) {
-       dao.adicionar(m);
+        dao.adicionar(m);
     }
 
     public void remover(Medico m) {
@@ -34,5 +34,9 @@ public class MedicoBO {
 
     public void atualizar(Medico m) {
         dao.remover(m);
+    }
+    
+    public List<Medico> getAllMedicos(){
+        return dao.getAllMedicos();
     }
 }

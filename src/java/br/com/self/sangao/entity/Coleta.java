@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Coleta implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
+    @SequenceGenerator(name="seq", sequenceName="EXAME_ID_SEQ")
     @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
     @Column(name = "id")
     private Integer id;

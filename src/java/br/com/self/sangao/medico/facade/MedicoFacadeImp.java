@@ -29,4 +29,9 @@ public class MedicoFacadeImp implements IMedicoFacade {
         bo.atualizar(m);
     }
 
+    @Override
+    public List<Medico> getAllMedicos() {
+        return bo.getAllMedicos();
+    }
+
 }

@@ -96,7 +96,6 @@ public abstract class HibernateDAO<T> {
     public <T extends Entidade> Object select(Object obj, T o){
         em = PersistenceManager.getInstance().getConnection();
         EntityTransaction t = em.getTransaction();
-//        obj retorno = null;
         T newO = null;
         try {
             StringBuilder str = new StringBuilder();

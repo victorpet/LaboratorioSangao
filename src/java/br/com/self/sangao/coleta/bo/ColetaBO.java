@@ -6,7 +6,7 @@ package br.com.self.sangao.coleta.bo;
 
 import br.com.self.sangao.coleta.dao.ColetaDAO;
 import br.com.self.sangao.entity.Coleta;
-import br.com.self.sangao.entity.Convenio;
+import br.com.self.sangao.entity.TipoExame;
 import java.util.List;
 
 /**
@@ -25,12 +25,12 @@ public class ColetaBO {
         dao.atualizar(o);
     }
     
-    public void atualizar(Object o){
-        dao.atualizar(o);
+    public boolean atualizar(Object o){
+        return dao.atualizar(o);
     }
     
     public void remover(Integer id){
-        dao.remover(id, Convenio.class);
+        dao.remover(id, Coleta.class);
     }
     
     public Coleta select(Integer id){
@@ -43,5 +43,13 @@ public class ColetaBO {
     
     public List<Coleta> getAllColetas(){
         return dao.getAllColetas();
+    }
+    
+    public List<TipoExame> getAllTipoExames(){
+        return dao.getAllTipoExames();
+    }
+    
+    public Coleta getColeta(Integer id){
+        return dao.getColeta(id);
     }
 }

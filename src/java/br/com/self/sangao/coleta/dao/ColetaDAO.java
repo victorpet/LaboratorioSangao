@@ -7,6 +7,7 @@ package br.com.self.sangao.coleta.dao;
 import br.com.self.sangao.dao.HibernateDAO;
 import br.com.self.sangao.dao.PersistenceManager;
 import br.com.self.sangao.entity.Coleta;
+import br.com.self.sangao.entity.TipoExame;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -52,5 +53,26 @@ public class ColetaDAO extends HibernateDAO {
         }
         return list;
 
+    }
+
+    public List<TipoExame> getAllTipoExames() {
+        EntityManager em = PersistenceManager.getInstance().getConnection();
+        EntityTransaction t = em.getTransaction();
+        List<TipoExame> list = new ArrayList<TipoExame>();
+        try {
+            Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("TipoExame.findAll");
+            list = query.getResultList();
+        } catch (Exception e) {
+            t.rollback();
+            log.error("Erro ao selectionar tipos de exame", e);
+        } finally {
+            em.close();
+        }
+        return list;
+
+    }
+    
+    public Coleta getColeta(Integer id){
+        return (Coleta) dao.select(id, new Coleta());
     }
 }

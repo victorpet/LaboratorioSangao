@@ -4,9 +4,16 @@
  */
 package br.com.self.sangao.servlets;
 
+import br.com.self.sangao.coleta.facade.ColetaFacade;
+import br.com.self.sangao.entity.Coleta;
+import br.com.self.sangao.entity.Medico;
+import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.entity.TipoExame;
 import br.com.self.sangao.paciente.facade.PacienteFacade;
+import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,22 +38,6 @@ public class Coletas extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Coletas</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Coletas at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,6 +54,14 @@ public class Coletas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        if (request.getParameter("acao").equalsIgnoreCase("list")) {
+            request.setAttribute("list", ColetaFacade.getInstance().getAllColetas());
+            getServletContext().getRequestDispatcher("/coletas/coletas.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
+            request.setAttribute("coleta", ColetaFacade.getInstance().getColeta(Integer.parseInt(request.getParameter("id"))));
+            getServletContext().getRequestDispatcher("/coletas/coletas_inserir.jsp").forward(request, response);
+        } 
     }
 
     /**
@@ -78,11 +77,50 @@ public class Coletas extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        boolean ok = false;
         
-        if (request.getParameter("acao").equalsIgnoreCase("list")) {
-            request.setAttribute("list", PacienteFacade.getInstance().getAllPacientes());
-            getServletContext().getRequestDispatcher("/pacientes/pacientes.jsp").forward(request, response);
+        try {
+
+            if (request.getParameter("acao").equalsIgnoreCase("salvar")) {
+
+                String id = request.getParameter("id");
+                String idPaciente = request.getParameter("nome");
+                Date dtColeta = Utils.FORMATADOR_DATA.parse(request.getParameter("dtColeta"));
+                Date dtEntrega = Utils.FORMATADOR_DATA.parse(request.getParameter("dtEntrega"));
+                String idMedico = request.getParameter("medico");
+                String tipoExame = request.getParameter("tipoExame");
+
+                Coleta c = new Coleta();
+                if (!id.equals("")) {
+                    c.setId(Integer.valueOf(id));
+                }
+                c.setIdPaciente(new Paciente(Integer.valueOf(idPaciente)));
+                c.setDtColeta(dtColeta);
+                c.setDtEntrega(dtEntrega);
+                c.setIdMedico(new Medico(Integer.valueOf(idMedico)));
+                c.setTipoExame(new TipoExame(Integer.valueOf(tipoExame)));
+
+                ColetaFacade.getInstance().inserirAtualizar(c);
+
+                response.sendRedirect(Utils.ABSOLUTEPATH + "Coletas?acao=list");
+                
+            } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
+
+                String[] ids = request.getParameterValues("ids[]");
+
+                for (int i = 0; i < ids.length; i++) {
+                    ColetaFacade.getInstance().remover(Integer.valueOf(ids[i]));
+                }
+
+                response.sendRedirect(Utils.ABSOLUTEPATH + "Coletas?acao=list");
+            }
+
+        } catch (ParseException e) {
+        } finally {
+//            out.close();
         }
+
+
     }
 
     /**
