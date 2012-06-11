@@ -50,7 +50,7 @@
                     <ul>
                         <li ><a href="javascript:void(0);">Inicio</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes?acao=list">Pacientes</a></li>
-                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>medicos/medicos.jsp">Médicos</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Medicos?acao=list">Médicos</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados.jsp">Resultados</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>exames/exames.jsp">Exames</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Convenios?acao=list">Convênios</a></li>

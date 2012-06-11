@@ -1,13 +1,20 @@
+<%@page import="br.com.self.sangao.entity.Medico"%>
+<%@page import="java.util.List" %>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
 <div class="tituloPagina">
-    MEDICOS - <a href="<% out.print(Utils.ABSOLUTEPATH);%>medicos/medicos_inserir.jsp">Inserir novo Médico</a>
+    MEDICOS - <a href="<% out.print(Utils.ABSOLUTEPATH);%>Medicos?acao=inserir">Inserir novo Médico</a>
 </div>
 
 <div class="clear"></div>
 
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>MedicosServlet" method="post">
+<%  List<Object> list = (List<Object>) request.getAttribute("list");%>
+
+<% if (list != null) {
+        if (list.size() > 0) {%>
+
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Medicos" method="post">
 
 <table width="940" border="0" cellspacing="0" cellpadding="0" id="tableList">
 
@@ -22,6 +29,8 @@
             <td class="principal">Nome</td>
 
             <td class="principal">CRM</td>
+            
+            <td>&nbsp;</td>
 
         </tr>
     </thead>
@@ -29,25 +38,35 @@
 
     <tbody>
 
+        <% for (Object o : list) {
+                    Medico u = (Medico) o;
+            %>
+            
         <!--Linha para Registro !-->
         <tr>
 
             <!-- Checkbox!-->
             <td align="center">
-                <input type="checkbox" />
+               <input type="checkbox" name="ids[]" value="<% out.print(u.getId());%>"/>
             </td>
 
             <!--Nome!-->
             <td class="principal">
-                Victor Pettengill Fernandes
+                <% out.print(u.getNome());%>
             </td>
 
             <!--CRM !-->
             <td class="principal">
-                37546
+                <% out.print(u.getCrm());%>
             </td>
-
+            
+            <td>
+            <a href="<% out.print(Utils.ABSOLUTEPATH+"Medicos?acao=editar&id="+u.getId());%>">Editar</a>
+            <td>
+                
         </tr>
+        
+        <% }%>
     </tbody>
 
 </table>
@@ -61,5 +80,12 @@
 </div>
     
 </form>
+
+<% }
+} else {%>
+
+<div>Não Existem registros ainda</div>
+
+<% }%>
 
 <%@include file="../templates/trailer.jsp" %>

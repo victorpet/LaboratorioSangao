@@ -23,7 +23,7 @@ public class MedicoDAO extends HibernateDAO {
         List<Object> list = null;
 
         try {
-            Query query = PersistenceManager.getInstance().getConnection().createQuery("SELECT * FROM medicos");
+            Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Medico.findAll");
             list = query.getResultList();
 
         } catch (Exception e) {

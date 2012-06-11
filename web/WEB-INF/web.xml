@@ -9,6 +9,10 @@
         <servlet-name>Convenios</servlet-name>
         <servlet-class>br.com.self.sangao.servlets.Convenios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Medicos</servlet-name>
+        <servlet-class>br.com.self.sangao.servlets.Medicos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Pacientes</servlet-name>
         <url-pattern>/Pacientes</url-pattern>
@@ -24,5 +28,9 @@
     <servlet-mapping>
         <servlet-name>Convenios</servlet-name>
         <url-pattern>/Convenios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Medicos</servlet-name>
+        <url-pattern>/Medicos</url-pattern>
     </servlet-mapping>
 </web-app>

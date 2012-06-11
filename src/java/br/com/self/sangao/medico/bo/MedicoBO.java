@@ -18,7 +18,7 @@ public class MedicoBO {
     
     private static final Logger log = Logger.getLogger(UsuarioBO.class);
     
-    MedicoDAO dao = MedicoDAO.getInstance();
+    private static MedicoDAO dao = MedicoDAO.getInstance();
    
     public List<Object> select() {
         return dao.select();
@@ -32,7 +32,15 @@ public class MedicoBO {
         dao.remover(m);
     }
 
+    public void remover(Integer id){
+        dao.remover(id, Medico.class);
+    }
+    
+    public Medico select(Integer id){
+        return (Medico) dao.select(id, new Medico());
+    }
+    
     public void atualizar(Medico m) {
-        dao.remover(m);
+        dao.atualizar(m);
     }
 }

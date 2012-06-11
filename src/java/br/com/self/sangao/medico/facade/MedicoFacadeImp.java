@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MedicoFacadeImp implements IMedicoFacade {
     
-    MedicoBO bo = new MedicoBO();
+    private static MedicoBO bo = new MedicoBO();
 
     @Override
     public List<Object> select() {
@@ -27,6 +27,16 @@ public class MedicoFacadeImp implements IMedicoFacade {
     @Override
     public void atualizar(Medico m) {
         bo.atualizar(m);
+    }
+
+    @Override
+    public void remover(Integer id) {
+        bo.remover(id);
+    }
+
+    @Override
+    public Medico select(Integer id) {
+        return bo.select(id);
     }
 
 }
