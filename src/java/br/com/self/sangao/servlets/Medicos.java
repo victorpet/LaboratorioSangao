@@ -4,12 +4,14 @@
  */
 package br.com.self.sangao.servlets;
 
+import br.com.self.sangao.convenio.facade.ConvenioFacade;
+import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Usuario;
+import br.com.self.sangao.medico.facade.MedicoFacade;
 import br.com.self.sangao.usuario.facade.UsuarioFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "Usuarios", urlPatterns = {"/Usuarios"})
-public class Usuarios extends HttpServlet {
+public class Medicos extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -35,15 +36,16 @@ public class Usuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        if (request.getParameter("acao").equalsIgnoreCase("list")) {
-            request.setAttribute("list", UsuarioFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);
+         if (request.getParameter("acao").equals("list")) {
+            request.setAttribute("list", MedicoFacade.getInstance().select());
+            getServletContext().getRequestDispatcher("/medicos/medicos.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equals("inserir")) {
+            getServletContext().getRequestDispatcher("/medicos/medicos_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
-            request.setAttribute("usuario", UsuarioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
-        } else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
-            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+            request.setAttribute("medico", MedicoFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
+            getServletContext().getRequestDispatcher("/medicos/medicos_inserir.jsp").forward(request, response);
         }
+         
     }
 
     /**
@@ -58,44 +60,42 @@ public class Usuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         if (request.getParameter("acao").equalsIgnoreCase("salvar")) {
 
             String id = request.getParameter("id");
             
             if(id.equals("")){
             
-            Usuario u = new Usuario();
-            u.setNome(request.getParameter("nome"));
-            u.setUsername(request.getParameter("username"));
-            u.setSenha(request.getParameter("senha"));
-
-            UsuarioFacade.getInstance().adicionar(u);
-            
+                Medico m = new Medico();
+                m.setNome(request.getParameter("nome"));
+                m.setCrm(request.getParameter("crm"));
+                
+                MedicoFacade.getInstance().adicionar(m);
             } else{
+           
+                Medico m = MedicoFacade.getInstance().select(Integer.parseInt(request.getParameter("id")));
+                m.setNome(request.getParameter("nome"));
+                m.setCrm(request.getParameter("crm"));
                 
-                Usuario u = new Usuario(Integer.parseInt(id));
-                u.setNome(request.getParameter("nome"));
-                u.setUsername(request.getParameter("username"));
-                u.setSenha(request.getParameter("senha"));
+                MedicoFacade.getInstance().atualizar(m);
                 
-                UsuarioFacade.getInstance().atualizar(u);
             }
             
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Medicos?acao=list");
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
             String[] ids = request.getParameterValues("ids[]");
 
             for (int i = 0; i < ids.length; i++) {
                 
-               UsuarioFacade.getInstance().remover(ids[i]);
+               MedicoFacade.getInstance().remover(Integer.parseInt(ids[i]));
                 
             }
 
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Medicos?acao=list");
         }
-
+        
     }
 
     /**

@@ -8,6 +8,7 @@ import br.com.self.sangao.convenio.facade.ConvenioFacade;
 import br.com.self.sangao.entity.Convenio;
 import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.entity.Usuario;
+import br.com.self.sangao.paciente.facade.PacienteFacade;
 import br.com.self.sangao.usuario.facade.UsuarioFacade;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
@@ -36,17 +37,17 @@ public class Convenios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        if(request.getParameter("acao").equals("list")){
+
+        if (request.getParameter("acao").equals("list")) {
             request.setAttribute("list", ConvenioFacade.getInstance().select());
-           getServletContext().getRequestDispatcher("/convenios/convenios.jsp").forward(request, response);
-        } else if(request.getParameter("acao").equals("inserir")){
-           getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/convenios/convenios.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equals("inserir")) {
+            getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("convenio", ConvenioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
             getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
-        } 
-        
+        }
+
     }
 
     /**
@@ -61,24 +62,55 @@ public class Convenios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-     
-        if(request.getParameter("acao").equalsIgnoreCase("Inserir")){
+
+        try{
+        
+        if (request.getParameter("acao").equalsIgnoreCase("Salvar")) {
+
+            String matricula = request.getParameter("matricula");
             
-            Convenio c = new Convenio();
+            if(matricula.equals("")){
             
+                Convenio c = new Convenio();
+                c.setIdPaciente(PacienteFacade.getInstance().getPaciente(Integer.parseInt(request.getParameter("paciente"))));
+                c.setNaturezaContratacao(request.getParameter("natureza"));
+                c.setAcomodacao(request.getParameter("acomodacao"));
+                c.setValidade(Utils.FORMATADOR_DATA.parse(request.getParameter("validade")));
+                c.setAbrangencia(request.getParameter("abrangencia"));
+                
+                ConvenioFacade.getInstance().atualizar(c);
+                
+            } else{
+            
+                Convenio c = ConvenioFacade.getInstance().select(Integer.parseInt(matricula));
+                c.setNaturezaContratacao(request.getParameter("natureza"));
+                c.setIdPaciente(PacienteFacade.getInstance().getPaciente(Integer.parseInt(request.getParameter("paciente"))));
+                c.setAcomodacao(request.getParameter("acomodacao"));
+                c.setValidade(Utils.FORMATADOR_DATA.parse(request.getParameter("validade")));
+                c.setAbrangencia(request.getParameter("abrangencia"));
+                
+                ConvenioFacade.getInstance().atualizar(c);
+            }
+            
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Convenios?acao=list");
+
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
             String[] ids = request.getParameterValues("ids[]");
 
             for (int i = 0; i < ids.length; i++) {
-                
+
                 ConvenioFacade.getInstance().remover(Integer.parseInt(ids[i]));
-                
+
             }
 
             response.sendRedirect(Utils.ABSOLUTEPATH + "Convenios?acao=list");
         }
         
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     /**

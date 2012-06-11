@@ -48,7 +48,7 @@ public class ConvenioDAO extends HibernateDAO {
 
         try {
             Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Convenio.findByPaciente");
-            query.setParameter("id_paciente", pacienteID);
+            query.setParameter("idPaciente", pacienteID);
             list = query.getResultList();
 
         } catch (Exception e) {

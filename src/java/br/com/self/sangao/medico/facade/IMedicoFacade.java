@@ -14,4 +14,8 @@ public interface IMedicoFacade {
     public void atualizar(Medico m);
     
     public List<Medico> getAllMedicos();
+    
+    public void remover(Integer id);
+
+    public Medico select(Integer id);
 }

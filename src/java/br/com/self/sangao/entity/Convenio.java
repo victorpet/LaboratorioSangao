@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Convenio implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @SequenceGenerator(name="seq", sequenceName="convenio_matricula_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
     @Column(name = "matricula")
     private Integer matricula;
     @Column(name = "natureza_contratacao")
