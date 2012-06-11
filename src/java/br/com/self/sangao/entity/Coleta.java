@@ -19,11 +19,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "exame")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Exame.findAll", query = "SELECT e FROM Exame e"),
-    @NamedQuery(name = "Exame.findById", query = "SELECT e FROM Exame e WHERE e.id = :id"),
-    @NamedQuery(name = "Exame.findByDtColeta", query = "SELECT e FROM Exame e WHERE e.dtColeta = :dtColeta"),
-    @NamedQuery(name = "Exame.findByDtEntrega", query = "SELECT e FROM Exame e WHERE e.dtEntrega = :dtEntrega")})
-public class Exame implements Serializable, Entidade {
+    @NamedQuery(name = "Coleta.findAll", query = "SELECT e FROM Coleta e"),
+    @NamedQuery(name = "Coleta.findById", query = "SELECT e FROM Coleta e WHERE e.id = :id"),
+    @NamedQuery(name = "Coleta.findByDtColeta", query = "SELECT e FROM Coleta e WHERE e.dtColeta = :dtColeta"),
+    @NamedQuery(name = "Coleta.findByDtEntrega", query = "SELECT e FROM Coleta e WHERE e.dtEntrega = :dtEntrega")})
+public class Coleta implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -48,10 +48,10 @@ public class Exame implements Serializable, Entidade {
     @ManyToOne(optional = false)
     private Medico idMedico;
 
-    public Exame() {
+    public Coleta() {
     }
 
-    public Exame(Integer id) {
+    public Coleta(Integer id) {
         this.id = id;
     }
 
@@ -122,10 +122,10 @@ public class Exame implements Serializable, Entidade {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Exame)) {
+        if (!(object instanceof Coleta)) {
             return false;
         }
-        Exame other = (Exame) object;
+        Coleta other = (Coleta) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

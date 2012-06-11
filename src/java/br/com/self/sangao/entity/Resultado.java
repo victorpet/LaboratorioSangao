@@ -30,7 +30,7 @@ public class Resultado implements Serializable, Entidade {
     private String descricao;
     @JoinColumn(name = "id_exame", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Exame idExame;
+    private Coleta idExame;
 
     public Resultado() {
     }
@@ -55,11 +55,11 @@ public class Resultado implements Serializable, Entidade {
         this.descricao = descricao;
     }
 
-    public Exame getIdExame() {
+    public Coleta getIdExame() {
         return idExame;
     }
 
-    public void setIdExame(Exame idExame) {
+    public void setIdExame(Coleta idExame) {
         this.idExame = idExame;
     }
 

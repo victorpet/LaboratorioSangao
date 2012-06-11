@@ -44,7 +44,7 @@ public class Paciente implements Serializable, Entidade {
     @Column(name = "telefone")
     private String telefone;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
-    private Collection<Exame> exameCollection;
+    private Collection<Coleta> exameCollection;
 
     public Paciente() {
     }
@@ -94,11 +94,11 @@ public class Paciente implements Serializable, Entidade {
     }
 
     @XmlTransient
-    public Collection<Exame> getExameCollection() {
+    public Collection<Coleta> getExameCollection() {
         return exameCollection;
     }
 
-    public void setExameCollection(Collection<Exame> exameCollection) {
+    public void setExameCollection(Collection<Coleta> exameCollection) {
         this.exameCollection = exameCollection;
     }
 

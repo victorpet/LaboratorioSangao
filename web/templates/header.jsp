@@ -54,6 +54,7 @@
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados.jsp">Resultados</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>exames/exames.jsp">Exames</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Convenios?acao=list">Convênios</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Coletas?acao=list">Coletas</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Usuarios?acao=list">Usuários</a></li>
                     </ul>
                 </div>
