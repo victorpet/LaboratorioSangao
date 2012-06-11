@@ -32,13 +32,24 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
     }
 
     @Override
-    public void atualizar(Usuario m) {
-        bo.atualizar(m);
-    }
-
-    @Override
     public List<Object> select() {
         return bo.select();
     }
+
+    @Override
+    public void remover(Object ob, Class classe) {
+       bo.remover(ob, classe);
+    }
+
+    @Override
+    public Usuario select(Integer id) {
+        return bo.select(id);
+    }
+
+    @Override
+    public void atualizar(Object ob, Class classe) {
+        bo.atualizar(ob, classe);
+    }
+
     
 }

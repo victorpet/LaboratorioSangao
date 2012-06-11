@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "UsuariosServlet", urlPatterns = {"/UsuariosServlet"})
-public class UsuariosServlet extends HttpServlet {
+@WebServlet(name = "Usuarios", urlPatterns = {"/Usuarios"})
+public class Usuarios extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -34,11 +34,15 @@ public class UsuariosServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        if (request.getParameter("acao").equals("list")) {
-            
+
+        if (request.getParameter("acao").equalsIgnoreCase("list")) {
             request.setAttribute("list", UsuarioFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);   
+            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
+            request.setAttribute("usuario", UsuarioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
+            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+        } else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
+            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
         }
     }
 
@@ -54,19 +58,30 @@ public class UsuariosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        if(request.getParameter("acao").equals("inserir")){
-            
+
+        if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
+
             Usuario u = new Usuario();
             u.setNome(request.getParameter("nome"));
             u.setUsername(request.getParameter("username"));
             u.setSenha(request.getParameter("senha"));
-            
+
             UsuarioFacade.getInstance().adicionar(u);
-            
-            response.sendRedirect(Utils.ABSOLUTEPATH+"UsuariosServlet?acao=list");
+
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
+        } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
+
+            String[] ids = request.getParameterValues("ids[]");
+
+            for (int i = 0; i < ids.length; i++) {
+                
+                UsuarioFacade.getInstance().remover(Integer.parseInt(ids[i]), Usuario.class);
+                
+            }
+
+            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
         }
-        
+
     }
 
     /**

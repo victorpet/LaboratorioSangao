@@ -1,20 +1,13 @@
-<%@page import="br.com.self.sangao.entity.Usuario"%>
-<%@page import="java.util.List"%>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
 <div class="tituloPagina">
-    USUÁRIOS - <a href="<% out.print(Utils.ABSOLUTEPATH+"Usuarios?acao=inserir");%>">Inserir novo Usuário</a>
+    Convenios - <a href="<% out.print(Utils.ABSOLUTEPATH);%>Convenios?acao=inserir">Inserir novo Convênio</a>
 </div>
 
 <div class="clear"></div>
 
-<%  List<Object> list = (List<Object>) request.getAttribute("list");%>
-
-<% if (list != null) {
-        if (list.size() > 0) {%>
-
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>Usuarios" method="post">
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Convenios" method="post">
 
     <table width="940" border="0" cellspacing="0" cellpadding="0" id="tableList">
 
@@ -26,12 +19,26 @@
 
                 <td>&nbsp;</td>
 
-                <td class="principal">Nome do Usuário</td>
-
-                <td class="principal">Username</td>
-
-                <td class="principal">Senha</td>
+                <td class="principal">
+                    Paciente
+                </td>
                 
+                <td class="principal">
+                    Natureza
+                </td>
+
+                <td class="principal">
+                    Acomodação
+                </td>
+
+                <td class="principal">
+                    Validade
+                </td>
+
+                <td class="principal">
+                    Abrangência
+                </td>
+
                 <td>&nbsp;</td>
 
             </tr>
@@ -40,42 +47,40 @@
 
         <tbody>
 
-            <% for (Object o : list) {
-                    Usuario u = (Usuario) o;
-            %>
-
             <!--Linha para Registro !-->
             <tr>
 
                 <!-- Checkbox!-->
                 <td align="center">
-                    <input type="checkbox" name="ids[]" value="<% out.print(u.getId());%>"/>
+                    <input type="checkbox" />
                 </td>
 
-                <!--Nome do Usuário !-->
                 <td class="principal">
-                    <% out.print(u.getNome());%>
+                    Paciente
                 </td>
 
-                <!--Username !-->
                 <td class="principal">
-                    <% out.print(u.getUsername());%>
-                </td>
-
-                <!--Password !-->
-                <td class="principal">
-                    <% out.print(u.getSenha());%>
+                    Natureza
                 </td>
                 
-                <!--Editar !-->
                 <td class="principal">
-                    <a href="<% out.print(Utils.ABSOLUTEPATH+"Usuarios?acao=editar&id="+u.getId());%>">Editar</a>
+                    Acomodação
                 </td>
 
-            </tr>    
+                <td class="principal">
+                    Validade
+                </td>
 
-            <% }%>
+                <td class="principal">
+                    Abrangência
+                </td>
 
+                <!--Editar !-->
+                <td class="principal">
+                    
+                </td>
+
+            </tr>
         </tbody>
 
     </table>
@@ -89,12 +94,5 @@
     </div>
 
 </form>
-
-<% }
-} else {%>
-
-<div>Não Existem registros ainda</div>
-
-<% }%>
 
 <%@include file="../templates/trailer.jsp" %>

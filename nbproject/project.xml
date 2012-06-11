@@ -367,7 +367,7 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.PostgreSQL-JDBC-Driver-8.4-jdbc3.classpath}</file>
+                    <file>${file.reference.postgresql-8.4-703.jdbc3.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

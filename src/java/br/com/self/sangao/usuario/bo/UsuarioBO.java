@@ -28,13 +28,21 @@ public class UsuarioBO {
     }
 
     public void remover(Usuario m) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        dao.remover(m);
+    }
+    
+    public void remover(Object ob, Class classe){
+        dao.remover(ob, classe);
     }
 
-    public void atualizar(Usuario m) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void atualizar(Object ob, Class classe){
+        dao.atualizar(ob, classe);
     }
 
+    public Usuario select(Integer id){
+        return (Usuario) dao.select(id, new Usuario());
+    }
+    
     public List<Object> select() {
         return dao.select();
     }

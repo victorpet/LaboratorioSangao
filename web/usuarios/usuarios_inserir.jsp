@@ -7,7 +7,7 @@
 
 <div class="clear"></div>
 
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>UsuariosServlet" method="post">
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Usuarios" method="post">
 
     <fieldset>
 
@@ -43,7 +43,7 @@
 
     <div style="text-align:right;">
         <label>
-            <input type="submit" name="acao" id="enviar" value="inserir" />
+            <input type="submit" name="acao" id="enviar" value="Inserir" />
         </label>
     </div>
 

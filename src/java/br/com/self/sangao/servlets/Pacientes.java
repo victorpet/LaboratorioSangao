@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "PacientesServlet", urlPatterns = {"/PacientesServlet"})
-public class PacientesServlet extends HttpServlet {
+@WebServlet(name = "Pacientes", urlPatterns = {"/Pacientes"})
+public class Pacientes extends HttpServlet {
 
     /**
      * Processes requests for both HTTP

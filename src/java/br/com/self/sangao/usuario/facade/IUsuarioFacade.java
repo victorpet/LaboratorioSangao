@@ -14,12 +14,16 @@ import java.util.List;
 public interface IUsuarioFacade {
 
     public List<Object> select();
-    
+
     public boolean isValid(Usuario usuario);
 
     public void adicionar(Usuario usuario);
 
     public void remover(Usuario usuario);
 
-    public void atualizar(Usuario usuario);
+    public void remover(Object ob, Class classe);
+    
+    public Usuario select(Integer id);
+    
+    public void atualizar(Object ob, Class classe);
 }
