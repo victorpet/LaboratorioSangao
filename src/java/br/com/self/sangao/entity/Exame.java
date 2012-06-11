@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Exame.findById", query = "SELECT e FROM Exame e WHERE e.id = :id"),
     @NamedQuery(name = "Exame.findByDtColeta", query = "SELECT e FROM Exame e WHERE e.dtColeta = :dtColeta"),
     @NamedQuery(name = "Exame.findByDtEntrega", query = "SELECT e FROM Exame e WHERE e.dtEntrega = :dtEntrega")})
-public class Exame implements Serializable {
+public class Exame implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -135,6 +135,11 @@ public class Exame implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.Exame[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getID() {
+        return id;
     }
     
 }

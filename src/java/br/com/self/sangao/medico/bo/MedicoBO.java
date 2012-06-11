@@ -33,6 +33,6 @@ public class MedicoBO {
     }
 
     public void atualizar(Medico m) {
-        dao.atualizar(m);
+        dao.remover(m);
     }
 }

@@ -6,6 +6,7 @@ package br.com.self.sangao.paciente.facade;
 
 import br.com.self.sangao.paciente.bo.PacienteBO;
 import br.com.self.sangao.entity.Entidade;
+import br.com.self.sangao.entity.Paciente;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,5 +22,15 @@ public class PacienteFacadeImp implements IPacienteFacade {
     @Override
     public boolean inserirRegistro(Entidade e) {
         return bo.inserirRegistro(e);
+    }
+
+    @Override
+    public void remover(Integer id) {
+        bo.remover(id);
+    }
+
+    @Override
+    public void remover(Paciente p) {
+        bo.remover(p);
     }
 }

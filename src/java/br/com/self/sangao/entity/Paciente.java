@@ -135,5 +135,10 @@ public class Paciente implements Serializable, Entidade {
     public void setConvenioCollection(Collection<Convenio> convenioCollection) {
         this.convenioCollection = convenioCollection;
     }
+
+    @Override
+    public Object getID() {
+        return id;
+    }
     
 }

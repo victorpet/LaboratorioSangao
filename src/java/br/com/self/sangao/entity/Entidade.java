@@ -10,4 +10,6 @@ package br.com.self.sangao.entity;
  */
 public interface Entidade {
     
+    public Object getID();
+    
 }

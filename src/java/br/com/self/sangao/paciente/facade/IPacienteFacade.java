@@ -5,6 +5,7 @@
 package br.com.self.sangao.paciente.facade;
 
 import br.com.self.sangao.entity.Entidade;
+import br.com.self.sangao.entity.Paciente;
 
 /**
  *
@@ -13,4 +14,8 @@ import br.com.self.sangao.entity.Entidade;
 public interface IPacienteFacade {
     
     public boolean inserirRegistro(Entidade e);
+    
+    public void remover(Integer id);
+    
+    public void remover(Paciente p);
 }

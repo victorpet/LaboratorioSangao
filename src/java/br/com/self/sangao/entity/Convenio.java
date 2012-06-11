@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Convenio.findByAcomodacao", query = "SELECT c FROM Convenio c WHERE c.acomodacao = :acomodacao"),
     @NamedQuery(name = "Convenio.findByValidade", query = "SELECT c FROM Convenio c WHERE c.validade = :validade"),
     @NamedQuery(name = "Convenio.findByAbrangencia", query = "SELECT c FROM Convenio c WHERE c.abrangencia = :abrangencia")})
-public class Convenio implements Serializable {
+public class Convenio implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -120,6 +120,11 @@ public class Convenio implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.Convenio[ matricula=" + matricula + " ]";
+    }
+
+    @Override
+    public Object getID() {
+        return matricula;
     }
     
 }

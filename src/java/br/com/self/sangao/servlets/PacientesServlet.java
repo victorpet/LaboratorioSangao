@@ -4,6 +4,7 @@
  */
 package br.com.self.sangao.servlets;
 
+import br.com.self.sangao.dao.HibernateDAO;
 import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.paciente.facade.PacienteFacade;
 import br.com.self.sangao.utils.Utils;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -23,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "PacientesServlet", urlPatterns = {"/PacientesServlet"})
 public class PacientesServlet extends HttpServlet {
+    
+    private static final Logger log = Logger.getLogger(PacientesServlet.class);
 
     /**
      * Processes requests for both HTTP
@@ -37,37 +41,7 @@ public class PacientesServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            String nome = request.getParameter("nome");
-            String endereco = request.getParameter("endereco");
-            Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
-            String telefone = request.getParameter("telefone");
-
-            Paciente p = new Paciente();
-            p.setNome(nome);
-            p.setEndereco(endereco);
-            p.setDtNascimento(dt_nascimento);
-            p.setTelefone(telefone);
-
-            boolean ok = PacienteFacade.getInstance().inserirRegistro(p);
-
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PacientesServlets</title>");
-            out.println("</head>");
-            out.println("<body>");
-            if (ok) {
-                out.println("<h1>Registro inserido com sucesso!</h1>");
-            } else {
-                out.println("<h1>Erro ao inserir registro!</h1>");
-            }
-            out.println("</body>");
-            out.println("</html>");
-        } catch (ParseException e) {
-        } finally {
-            out.close();
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -99,6 +73,29 @@ public class PacientesServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        PrintWriter out = response.getWriter();
+
+        try {
+            String nome = request.getParameter("nome");
+            String endereco = request.getParameter("endereco");
+            Date dt_nascimento = Utils.FORMATADOR_DATA.parse(request.getParameter("dtnasc"));
+            String telefone = request.getParameter("telefone");
+
+            Paciente p = new Paciente();
+            p.setNome(nome);
+            p.setEndereco(endereco);
+            p.setDtNascimento(dt_nascimento);
+            p.setTelefone(telefone);
+
+            boolean ok = PacienteFacade.getInstance().inserirRegistro(p);
+            
+            request.setAttribute("resultado", ok);
+            
+        } catch (ParseException e) {
+            log.error(e);
+        } finally {
+            out.close();
+        }
     }
 
     /**

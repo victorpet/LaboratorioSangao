@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TipoExame.findAll", query = "SELECT t FROM TipoExame t"),
     @NamedQuery(name = "TipoExame.findById", query = "SELECT t FROM TipoExame t WHERE t.id = :id"),
     @NamedQuery(name = "TipoExame.findByDescricao", query = "SELECT t FROM TipoExame t WHERE t.descricao = :descricao")})
-public class TipoExame implements Serializable {
+public class TipoExame implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -88,6 +88,11 @@ public class TipoExame implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.TipoExame[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getID() {
+        return id;
     }
     
 }

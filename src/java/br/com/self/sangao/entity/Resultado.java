@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Resultado.findAll", query = "SELECT r FROM Resultado r"),
     @NamedQuery(name = "Resultado.findById", query = "SELECT r FROM Resultado r WHERE r.id = :id"),
     @NamedQuery(name = "Resultado.findByDescricao", query = "SELECT r FROM Resultado r WHERE r.descricao = :descricao")})
-public class Resultado implements Serializable {
+public class Resultado implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -86,6 +86,11 @@ public class Resultado implements Serializable {
     @Override
     public String toString() {
         return "br.com.self.sangao.entity.Resultado[ id=" + id + " ]";
+    }
+
+    @Override
+    public Object getID() {
+        return id;
     }
     
 }
