@@ -5,9 +5,22 @@
         <servlet-name>Pacientes</servlet-name>
         <servlet-class>br.com.self.sangao.servlets.Pacientes</servlet-class>
     </servlet>
+    <welcome-file-list>
+        <welcome-file>
+            login.jsp
+            </welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>Medicos</servlet-name>
         <servlet-class>br.com.self.sangao.servlets.Medicos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Medicos</servlet-name>
+        <servlet-class>br.com.self.sangao.servlets.Medicos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Resultados</servlet-name>
+        <servlet-class>br.com.self.sangao.servlets.Resultados</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Convenios</servlet-name>
@@ -16,6 +29,10 @@
     <servlet>
         <servlet-name>Coletas</servlet-name>
         <servlet-class>br.com.self.sangao.servlets.Coletas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>br.com.self.sangao.servlets.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Relatorios</servlet-name>
@@ -34,12 +51,20 @@
         <url-pattern>/Usuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Resultados</servlet-name>
+        <url-pattern>/Resultados</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Convenios</servlet-name>
         <url-pattern>/Convenios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Medicos</servlet-name>
         <url-pattern>/Medicos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Coletas</servlet-name>

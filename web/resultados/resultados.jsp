@@ -1,13 +1,20 @@
+<%@page import="br.com.self.sangao.entity.Resultado"%>
+<%@page import="java.util.List"%>
 <%@page import="br.com.self.sangao.utils.Utils"%>
 <%@include file="../templates/header.jsp" %>
 
 <div class="tituloPagina">
-    Resultados - <a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados_inserir.jsp">Inserir novo Resultado</a>
+    Resultados - <a href="<% out.print(Utils.ABSOLUTEPATH);%>Resultados?acao=inserir">Inserir novo Resultado</a>
 </div>
 
 <div class="clear"></div>
 
-<form action="<% out.print(Utils.ABSOLUTEPATH);%>ResultadosServlet" method="post">
+<%  List<Object> list = (List<Object>) request.getAttribute("list");%>
+
+<% if (list != null) {
+        if (list.size() > 0) {%>
+
+<form action="<% out.print(Utils.ABSOLUTEPATH);%>Resultados" method="post">
 
 <table width="940" border="0" cellspacing="0" cellpadding="0" id="tableList">
 
@@ -22,6 +29,8 @@
             <td class="principal">Descrição</td>
             
             <td class="principal">Exame</td>
+            
+            <td>&nbsp;</td>
 
         </tr>
     </thead>
@@ -29,26 +38,35 @@
 
     <tbody>
 
+        <% for (Object o : list) {
+                    Resultado u = (Resultado) o;
+            %>
+        
         <!--Linha para Registro !-->
         <tr>
 
             <!-- Checkbox!-->
             <td align="center">
-                <input type="checkbox" />
+                <input type="checkbox" name="ids[]" value="<% out.print(u.getId());%>"/>
             </td>
  
             <!--Nome!-->
             <td class="principal">
-              Descrição do resultado
+              <% out.print(u.getDescricao());%>
             </td>
 
             <!--Exame!-->
             <td class="principal">
-                <!--Fazer Link para vizualizar o exame !-->
-                12314124312
+                <% out.print(u.getIdExame().getId());%>
             </td>
+            
+            <td>
+            <a href="<% out.print(Utils.ABSOLUTEPATH+"Resultados?acao=editar&id="+u.getId());%>">Editar</a>
+            <td>
 
         </tr>
+        
+        <% }%>
     </tbody>
 
 </table>
@@ -62,5 +80,12 @@
 </div>
     
 </form>
+
+<% }
+} else {%>
+
+<div>Não Existem registros ainda</div>
+
+<% }%>
 
 <%@include file="../templates/trailer.jsp" %>

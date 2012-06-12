@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Resultado implements Serializable, Entidade {
     private static final long serialVersionUID = 1L;
     @Id
-    @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
+    @SequenceGenerator(name="seq", sequenceName="resultado_id_seq")
     @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
     @Column(name = "id")
     private Integer id;

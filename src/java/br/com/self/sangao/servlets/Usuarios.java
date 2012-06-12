@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "Usuarios", urlPatterns = {"/Usuarios"})
+@WebServlet(name = "Usuarios", urlPatterns = {"/site/Usuarios"})
 public class Usuarios extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
