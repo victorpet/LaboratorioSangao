@@ -18,7 +18,7 @@ body{
 }
 
 .logoCliente{
-	background:url(../gfx/bgLogo_login.png) top center no-repeat;
+	background:url(gfx/bgLogo_login.png) top center no-repeat;
 	text-align:center;
 	padding:4px;
 	height:60px;
@@ -61,20 +61,20 @@ body{
 }
 
 .setaBox{
-	background:url(../gfx/arrowLogin.gif) center no-repeat;
+	background:url(gfx/arrowLogin.gif) center no-repeat;
 	height:7px;
 }
 
 .abaleft{
 	width:63px;
-	background:url(../gfx/aba_left.png) 0px 30px no-repeat;
+	background:url(gfx/aba_left.png) 0px 30px no-repeat;
 	float:left;
 	height:230px;
 }
 
 .abaright{
 	width:63px;
-	background:url(../gfx/aba_right.png) 0px 30px no-repeat;
+	background:url(gfx/aba_right.png) 0px 30px no-repeat;
 	float:left;
 	height:230px;
 }
@@ -82,7 +82,7 @@ body{
 
 .ambienteTitle{
 	height:63px;
-	background:url(../gfx/ambiente.jpg) no-repeat;
+	background:url(gfx/ambiente.jpg) no-repeat;
 }
 
 .botoes{
@@ -112,9 +112,9 @@ body{
 }
 
 .login{
-	background:url(../gfx/mail.jpg) #FFF 9px 7px no-repeat;
+	background:url(gfx/mail.jpg) #FFF 9px 7px no-repeat;
 }
 .senha{
-	background:url(../gfx/lock.jpg) #FFF 9px 4px no-repeat;
+	background:url(gfx/lock.jpg) #FFF 9px 4px no-repeat;
 }
 

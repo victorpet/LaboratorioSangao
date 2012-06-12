@@ -1,19 +1,25 @@
+<%-- 
+    Document   : index
+    Created on : Jun 11, 2012, 7:47:53 PM
+    Author     : victor
+--%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="br.com.self.sangao.utils.Utils"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login - Laboratório Sangão</title>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
 
-<link rel="stylesheet" href="styles/login.css">
-
-</head>
-<body>
-
-	<div id="infosHolder">
+        <link rel="stylesheet" href="/LaboratorioSangao/login.css">
+    </head>
+    <body>
+        <div id="infosHolder">
 			
 		<div class="infos">
 			Laboratório Sangão<br>
+                        
 			<span>Mato Grosso do Sul</span>
 		</div>
 		
@@ -43,7 +49,7 @@
 						<div class="botoes">
 												
 							<input type="reset" name="limpar" id="limpar" value="limpar" class="bt">
-							<input type="submit" name="enviar" id="enviar" value="entrar" class="bt">
+							<input type="submit" name="login" id="enviar" value="entrar" class="bt">
 						</div>
 						
 						
@@ -57,6 +63,5 @@
 		</div>
 	
 	</div>
-
-</body>
+    </body>
 </html>

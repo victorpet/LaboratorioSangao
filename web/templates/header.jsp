@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="<% out.print(Utils.ABSOLUTEPATH);%>styles/reset.css">
         <link rel="stylesheet" href="<% out.print(Utils.ABSOLUTEPATH);%>styles/960.css">
         <link rel="stylesheet" href="<% out.print(Utils.ABSOLUTEPATH);%>styles/padrao.css">
+        <link rel="stylesheet" href="<% out.print(Utils.ABSOLUTEPATH);%>styles/login.css">
     </head>
     <body>
 
@@ -27,7 +28,10 @@
                 </div>
 
                 <div class="grid_4 omega infosUsuario">
-                    Olá, <!-- Colocar nome usuario!-->, seja bem vindo 
+                    Olá, <% 
+                    HttpSession sessao = request.getSession();
+        out.print(sessao.getAttribute("nome")); %>, seja bem vindo 
+        
                     <br>
                     <a href="">Sair do Sistema </a>
 
@@ -51,8 +55,7 @@
                         <li ><a href="javascript:void(0);">Inicio</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Pacientes?acao=list">Pacientes</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Medicos?acao=list">Médicos</a></li>
-                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>resultados/resultados.jsp">Resultados</a></li>
-                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>exames/exames.jsp">Exames</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Resultados?acao=list">Resultados</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Convenios?acao=list">Convênios</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Coletas?acao=list">Coletas</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Usuarios?acao=list">Usuários</a></li>
