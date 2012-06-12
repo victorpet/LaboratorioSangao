@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.self.sangao.etiqueta.bo;
+package br.com.self.sangao.relatorio.bo;
 
 import java.io.InputStream;
 import java.util.*;
@@ -13,16 +13,16 @@ import org.apache.log4j.Logger;
  *
  * @author treinamento
  */
-public class EtiquetaBO {
+public class RelatorioBO {
 
-    private final Logger log = Logger.getLogger(EtiquetaBO.class);
+    private final Logger log = Logger.getLogger(RelatorioBO.class);
 
-    public byte[] geraEtiqueta(JRDataSource source) {
+    public byte[] geraRelatorio(JRDataSource source) {
 
         byte[] bytes = null;
 
         HashMap map = new HashMap();
-        InputStream urlReport = getClass().getResourceAsStream("Etiqueta.jasper");
+        InputStream urlReport = getClass().getResourceAsStream("Relatorio.jasper");
 
         try {
             bytes = JasperRunManager.runReportToPdf(urlReport, map, source);

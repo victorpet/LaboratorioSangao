@@ -8,6 +8,7 @@ import br.com.self.sangao.dao.HibernateDAO;
 import br.com.self.sangao.dao.PersistenceManager;
 import br.com.self.sangao.entity.Coleta;
 import br.com.self.sangao.entity.TipoExame;
+import br.com.self.sangao.relatorio.entity.Relatorio;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;

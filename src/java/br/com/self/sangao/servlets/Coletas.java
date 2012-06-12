@@ -9,11 +9,14 @@ import br.com.self.sangao.entity.Coleta;
 import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.entity.TipoExame;
+import br.com.self.sangao.etiqueta.bo.EtiquetaBO;
+import br.com.self.sangao.etiqueta.bo.EtiquetaJRDataSourceFactory;
 import br.com.self.sangao.utils.Utils;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +63,28 @@ public class Coletas extends HttpServlet {
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("coleta", ColetaFacade.getInstance().getColeta(Integer.parseInt(request.getParameter("id"))));
             getServletContext().getRequestDispatcher("/coletas/coletas_inserir.jsp").forward(request, response);
-        } 
+        } else if (request.getParameter("acao").equalsIgnoreCase("imprimir")) {
+            
+            Integer id = Integer.parseInt(request.getParameter("id"));
+
+            ServletOutputStream ouputStream = null;
+            EtiquetaBO bo = new EtiquetaBO();
+            byte[] bytes = bo.geraEtiqueta(EtiquetaJRDataSourceFactory.createDatasource(id));
+            try {
+                if (bytes != null && bytes.length > 0) {
+                    
+                    response.setContentType("application/pdf");
+                    response.setContentLength(bytes.length);
+                    ouputStream = response.getOutputStream();
+                    ouputStream.write(bytes, 0, bytes.length);
+                    ouputStream.flush();
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                ouputStream.close();
+            }
+        }
     }
 
     /**
@@ -76,8 +100,7 @@ public class Coletas extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        boolean ok = false;
-        
+
         try {
 
             if (request.getParameter("acao").equalsIgnoreCase("salvar")) {
@@ -102,7 +125,7 @@ public class Coletas extends HttpServlet {
                 ColetaFacade.getInstance().inserirAtualizar(c);
 
                 response.sendRedirect(Utils.ABSOLUTEPATH + "Coletas?acao=list");
-                
+
             } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
                 String[] ids = request.getParameterValues("ids[]");

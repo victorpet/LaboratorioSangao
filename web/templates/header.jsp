@@ -56,6 +56,7 @@
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Convenios?acao=list">Convênios</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Coletas?acao=list">Coletas</a></li>
                         <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Usuarios?acao=list">Usuários</a></li>
+                        <li ><a href="<% out.print(Utils.ABSOLUTEPATH);%>Relatorios?acao=relatorio">Relatório</a></li>
                     </ul>
                 </div>
             </div>

@@ -7,6 +7,7 @@ package br.com.self.sangao.coleta.facade;
 import br.com.self.sangao.coleta.bo.ColetaBO;
 import br.com.self.sangao.entity.Coleta;
 import br.com.self.sangao.entity.TipoExame;
+import br.com.self.sangao.relatorio.entity.Relatorio;
 import java.util.List;
 
 /**

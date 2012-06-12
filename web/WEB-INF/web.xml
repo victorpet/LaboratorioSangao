@@ -17,6 +17,10 @@
         <servlet-name>Coletas</servlet-name>
         <servlet-class>br.com.self.sangao.servlets.Coletas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Relatorios</servlet-name>
+        <servlet-class>br.com.self.sangao.servlets.Relatorios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Pacientes</servlet-name>
         <url-pattern>/Pacientes</url-pattern>
@@ -40,5 +44,9 @@
     <servlet-mapping>
         <servlet-name>Coletas</servlet-name>
         <url-pattern>/Coletas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Relatorios</servlet-name>
+        <url-pattern>/Relatorios</url-pattern>
     </servlet-mapping>
 </web-app>
