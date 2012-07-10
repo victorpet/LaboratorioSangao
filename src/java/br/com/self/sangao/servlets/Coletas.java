@@ -59,10 +59,10 @@ public class Coletas extends HttpServlet {
 
         if (request.getParameter("acao").equalsIgnoreCase("list")) {
             request.setAttribute("list", ColetaFacade.getInstance().getAllColetas());
-            getServletContext().getRequestDispatcher("/coletas/coletas.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/coletas/coletas.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("coleta", ColetaFacade.getInstance().getColeta(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/coletas/coletas_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/coletas/coletas_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("imprimir")) {
             
             Integer id = Integer.parseInt(request.getParameter("id"));
@@ -124,7 +124,7 @@ public class Coletas extends HttpServlet {
 
                 ColetaFacade.getInstance().inserirAtualizar(c);
 
-                response.sendRedirect(Utils.ABSOLUTEPATH + "Coletas?acao=list");
+                response.sendRedirect(Utils.ABSOLUTESGC + "Coletas?acao=list");
 
             } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
@@ -134,7 +134,7 @@ public class Coletas extends HttpServlet {
                     ColetaFacade.getInstance().remover(Integer.valueOf(ids[i]));
                 }
 
-                response.sendRedirect(Utils.ABSOLUTEPATH + "Coletas?acao=list");
+                response.sendRedirect(Utils.ABSOLUTESGC + "Coletas?acao=list");
             }
 
         } catch (ParseException e) {

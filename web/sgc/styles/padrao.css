@@ -1,0 +1,301 @@
+body{
+    background:#292A2F;
+    font-family:Arial, Helvetica, sans-serif;
+    height:100%;
+    min-height:100%;
+    margin:0;
+    padding:0;
+}
+
+/*---------------------Conteudo---------------------*/
+.conteudoContainer{
+	width:100%;
+	background:#FFF;
+}
+
+#conteudo{
+	padding-top:25px;
+	padding-bottom:25px;
+	background:#FFF;
+}
+
+.tituloPagina{
+	font-size:18px;
+	font-weight:bold;
+	color: #FF9900;
+        margin-bottom: 15px;
+}
+
+.tituloPagina a{
+	font-size:10px;
+	color:#999999;
+	padding-top:5px;
+	text-decoration:none;
+	color:#999999;
+}
+.tituloPagina a:hover{
+	text-decoration:none;
+	color:#FF9900;
+}
+
+.select{
+	height:20px;
+	border:1px solid #CCC;
+}
+
+/*---------------------------- FORMS --------------------------------*/
+input.error {
+  background-color:#FFE1E2;
+  border:#FF9396 1px solid;
+}
+label.error{
+	color:#999;
+	font-size:12px;
+}
+
+input[type=text]{
+	height:20px;
+	width:940px;
+	border:1px solid #CCC;
+}
+fieldset{
+	border-top:1px solid #CCC;
+	margin-bottom:20px;
+	width:940px;
+}
+legend{
+	padding-right:10px;
+	font-weight:bold;
+	color:#333;
+}
+.formHolder{
+	font-size:12px;
+	padding-top:20px;
+	padding-left:10px;
+	
+}
+
+.formHolder span{
+	color:#999;
+	font-size:11px;
+}
+
+/*--------------------------Login------------------------------*/
+.loginHolder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    margin-left: -155px;
+    margin-top: -50px;
+    border: 1px solid #888888;
+    padding: 30px;
+}
+
+/*-------------------------HEADER-------------------------------*/
+.topo{
+    padding-top:26px;
+    padding-bottom:20px;
+}
+
+.infosSGC{
+    padding-top:12px;
+    font-size:12px;
+    color:#FFF;
+    line-height:17px;
+}
+.infosSGC span{
+    color:#999999;
+}
+
+.infosUsuario{
+    float:right;
+    padding-top:12px;
+    font-size:12px;
+    color:#FFF;
+    line-height:17px;
+    text-align:right;
+}
+.infosUsuario span, .infosUsuario a{
+    text-decoration:none;
+    color:#FF9900;
+}
+.infosUsuario a:hover{
+    text-decoration:none;
+    color:#CCC;
+}
+
+
+/*----------------------------MENU------------------------------*/
+/**** MENU ****/
+#menuContainer{
+    width:100%;
+    background:#181A1D;
+    height:40px;
+}
+.menu{
+    border:none;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+}
+.menu ul{
+    background:#181A1D;
+    height:40px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.menu li{
+    float:left;
+    padding:0px;
+}
+.menu li a{
+    background:#181A1D bottom right no-repeat;
+    color:#999999;
+    display:block;
+    font-weight:normal;
+    line-height:40px;
+    margin:0px;
+    padding:0px 25px;
+    text-align:center;
+    text-decoration:none;
+}
+.menu ul li:hover a{
+    color:#999999;
+    text-decoration:none;
+}
+
+.menu ul li a:hover{
+    color:#FF9900;
+    text-decoration:none;
+
+}
+.menu li ul{
+    background:#181A1D;
+    display:none;
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:170px;
+    z-index:200;
+    color:#999999;
+    /*top:1em;
+    /*left:0;*/
+}
+.menu li:hover ul{
+    display:block;
+
+}
+.menu li li {
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:170px;
+    color:#999999;
+}
+.menu li:hover li a{
+    background:none;
+
+}
+.menu li ul a{
+    display:block;
+    height:40px;
+    font-size:12px;
+    color:#999999;
+    font-style:normal;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+.menu li ul a:hover, .menu li ul li:hover a{
+    border:0px;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+#current{
+    background: #181A1D url("gfx/hover.gif") bottom center no-repeat;
+}
+
+/*---------------------- RODAPE ------------------*/
+
+.rodape{
+	padding-top:30px;
+	padding-bottom:30px;
+	width:960px;
+}
+
+.infosRodape{
+	padding-top:5px;
+	font-size:12px;
+	color:#999999;
+}
+
+/************TABELA ***************/
+
+.header{
+	font-weight:bold;
+        color: #666666;
+}
+
+td{
+	text-align:center;
+	height:30px;
+	vertical-align:middle;
+}
+
+.select{
+	height:20px;
+	border:1px solid #CCC;
+}
+
+.principal{
+	text-align:left;
+}
+
+tr{
+	border-bottom:1px solid #CCC;
+        font-size: 13px;
+        color: #999999;
+}
+
+tr a{
+	text-decoration:underline;
+	color:#333;
+}
+
+tbody{
+		border-right:1px solid #CCC;
+		border-left:1px solid #CCC;
+}
+
+.formHolder table{
+	font-size:11px;
+}
+.z1{
+	background:#FFFFFF;
+}
+.z2{
+	background:#F8F8F8;
+}
+
+.z1:hover{
+	background:#EBFEEB;
+}
+.z2:hover{
+	background:#EBFEEB;
+}
+
+.trOver{
+	background:#FFF0D9;
+}
+
+.formHolder img{
+	border:none;
+}

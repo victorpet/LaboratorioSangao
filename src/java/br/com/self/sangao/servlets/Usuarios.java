@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Victor
  */
-@WebServlet(name = "Usuarios", urlPatterns = {"/site/Usuarios"})
+@WebServlet(name = "Usuarios", urlPatterns = {"/sgc/site/Usuarios"})
 public class Usuarios extends HttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -37,12 +37,12 @@ public class Usuarios extends HttpServlet {
 
         if (request.getParameter("acao").equalsIgnoreCase("list")) {
             request.setAttribute("list", UsuarioFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/usuarios/usuarios.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/usuarios/usuarios.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("usuario", UsuarioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/usuarios/usuarios_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("inserir")) {
-            getServletContext().getRequestDispatcher("/usuarios/usuarios_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/usuarios/usuarios_inserir.jsp").forward(request, response);
         }
     }
 
@@ -82,7 +82,7 @@ public class Usuarios extends HttpServlet {
                 UsuarioFacade.getInstance().atualizar(u);
             }
             
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Usuarios?acao=list");
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
             String[] ids = request.getParameterValues("ids[]");
@@ -93,7 +93,7 @@ public class Usuarios extends HttpServlet {
                 
             }
 
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Usuarios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Usuarios?acao=list");
         }
 
     }

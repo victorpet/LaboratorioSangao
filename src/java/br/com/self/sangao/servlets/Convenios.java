@@ -40,12 +40,12 @@ public class Convenios extends HttpServlet {
 
         if (request.getParameter("acao").equals("list")) {
             request.setAttribute("list", ConvenioFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/convenios/convenios.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/convenios/convenios.jsp").forward(request, response);
         } else if (request.getParameter("acao").equals("inserir")) {
-            getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/convenios/convenios_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("convenio", ConvenioFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/convenios/convenios_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/convenios/convenios_inserir.jsp").forward(request, response);
         }
 
     }
@@ -92,7 +92,7 @@ public class Convenios extends HttpServlet {
                 ConvenioFacade.getInstance().atualizar(c);
             }
             
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Convenios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Convenios?acao=list");
 
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
@@ -104,7 +104,7 @@ public class Convenios extends HttpServlet {
 
             }
 
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Convenios?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Convenios?acao=list");
         }
         
         } catch(Exception e){

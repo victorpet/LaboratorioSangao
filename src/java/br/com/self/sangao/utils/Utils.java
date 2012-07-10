@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
  */
 public class Utils {
     
-    public static final String ABSOLUTEPATH = "http://localhost:8080/LaboratorioSangao/";
+    public static final String ABSOLUTESGC = "http://localhost:8080/LaboratorioSangao/sgc/";
+    
+     public static final String ABSOLUTEPATH = "http://localhost:8080/LaboratorioSangao/";
     
     public static final DateFormat FORMATADOR_DATA_HORA_COMPLETA = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
     

@@ -38,12 +38,12 @@ public class Medicos extends HttpServlet {
 
          if (request.getParameter("acao").equals("list")) {
             request.setAttribute("list", MedicoFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/medicos/medicos.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/medicos/medicos.jsp").forward(request, response);
         } else if (request.getParameter("acao").equals("inserir")) {
-            getServletContext().getRequestDispatcher("/medicos/medicos_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/medicos/medicos_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("medico", MedicoFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/medicos/medicos_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/medicos/medicos_inserir.jsp").forward(request, response);
         }
          
     }
@@ -82,7 +82,7 @@ public class Medicos extends HttpServlet {
                 
             }
             
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Medicos?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Medicos?acao=list");
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
             String[] ids = request.getParameterValues("ids[]");
@@ -93,7 +93,7 @@ public class Medicos extends HttpServlet {
                 
             }
 
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Medicos?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Medicos?acao=list");
         }
         
     }

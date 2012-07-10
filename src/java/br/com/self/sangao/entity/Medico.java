@@ -42,6 +42,10 @@ public class Medico implements Serializable, Entidade {
     public Medico(Integer id) {
         this.id = id;
     }
+    
+    public Medico(String crm) {
+        this.crm = crm;
+    }
 
     public Integer getId() {
         return id;

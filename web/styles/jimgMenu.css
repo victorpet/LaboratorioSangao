@@ -1,0 +1,82 @@
+
+.jimgMenu {
+    margin-top: 400px;
+    position: relative;
+    float: right;
+    /*    right: 1%;*/
+    width: 710px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.jimgMenu p {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 6px;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.jimgMenu ul {
+    list-style: none;
+    margin: 0px;
+    display: block;
+    height: 200px;
+    width: 1340px;
+
+}
+
+.jimgMenu ul li {
+    float: left;
+}
+
+.jimgMenu ul li a {
+    /*    background:#FFFFFF none repeat scroll 0%;*/
+    border-right: 2px solid #fff;
+    cursor:pointer;
+    display:block;
+    overflow:hidden;
+    width:78px;/*
+    height: 200px;*/
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/*.jimgMenu ul li.landscapes a {
+    background: url(../images/landscapes.jpg) repeat scroll 0%;
+}*/
+
+.jimgMenu ul li.people a {
+    /*    background: url(../images/people.jpg) repeat scroll 0%;*/
+}
+
+.jimgMenu ul li.nature a {
+    /*    background: url(../images/exames.jpg) repeat scroll 0%;*/
+}
+
+.jimgMenu ul li.abstract a {
+    /*    background: url(../images/whoarewe.jpg) repeat scroll 0%;*/
+}
+
+.jimgMenu ul li.urban a {
+    /*    background: url(../images/urban.jpg) repeat scroll 0%;*/
+    min-width:310px;
+}
+
+.vText {
+    -moz-transform: rotate(-90deg) translate(0, 100%);
+    -moz-transform-origin: 0% 100%;
+    -o-transform: rotate(-90deg) translate(0, 100%);
+    -o-transform-origin: 0% 100%;
+    -webkit-transform: rotate(-90deg) translate(0, 100%);
+    -webkit-transform-origin: 0% 100%;
+    transform: rotate(-90deg) translate(0, 100%);
+    transform-origin: 0% 100%;
+
+}
+
+.clear {
+    clear: both;
+}

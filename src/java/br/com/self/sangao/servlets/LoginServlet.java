@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class UsuarioServlets
  */
-@WebServlet("/LoginServlet")
+@WebServlet("/sgc/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -55,9 +55,9 @@ public class LoginServlet extends HttpServlet {
                 sessao.setAttribute("logado", "true");
                 sessao.setAttribute("nome", u.getUsername());
                 
-                response.sendRedirect(Utils.ABSOLUTEPATH+"index.jsp");
+                response.sendRedirect(Utils.ABSOLUTESGC+"index.jsp");
             } else{
-                response.sendRedirect("/LaboratorioSangao/login.jsp");
+                response.sendRedirect("/sgc/LaboratorioSangao/login.jsp");
             }
             
         }

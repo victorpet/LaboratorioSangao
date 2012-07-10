@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author victor
  */
-@WebServlet(name = "Resultados", urlPatterns = {"/Resultados"})
+@WebServlet(name = "Resultados", urlPatterns = {"/sgc/Resultados"})
 public class Resultados extends HttpServlet {
 
 
@@ -42,12 +42,12 @@ public class Resultados extends HttpServlet {
      
         if (request.getParameter("acao").equals("list")) {
             request.setAttribute("list", ResultadoFacade.getInstance().select());
-            getServletContext().getRequestDispatcher("/resultados/resultados.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/resultados/resultados.jsp").forward(request, response);
         } else if (request.getParameter("acao").equals("inserir")) {
-            getServletContext().getRequestDispatcher("/resultados/resultados_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/resultados/resultados_inserir.jsp").forward(request, response);
         } else if (request.getParameter("acao").equalsIgnoreCase("editar")) {
             request.setAttribute("resultado", ResultadoFacade.getInstance().select(Integer.parseInt(request.getParameter("id"))));
-            getServletContext().getRequestDispatcher("/resultados/resultados_inserir.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/sgc/resultados/resultados_inserir.jsp").forward(request, response);
         }
         
     }
@@ -86,7 +86,7 @@ public class Resultados extends HttpServlet {
                 
             }
             
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Resultados?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Resultados?acao=list");
         } else if (request.getParameter("acao").equalsIgnoreCase("excluir")) {
 
             String[] ids = request.getParameterValues("ids[]");
@@ -97,7 +97,7 @@ public class Resultados extends HttpServlet {
                 
             }
 
-            response.sendRedirect(Utils.ABSOLUTEPATH + "Resultados?acao=list");
+            response.sendRedirect(Utils.ABSOLUTESGC + "Resultados?acao=list");
         }
         
     }
