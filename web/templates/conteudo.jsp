@@ -122,7 +122,7 @@
         </div>
     </form>
 
-    <form class="formDoctors" id="form2" action="#" method="POST">
+    <form class="formDoctors" id="form2" action="javascript:void" method="POST">
 
         <span style="margin-top: -20px;">Cadastre-se para acessar os exames de seus pacientes</span>
         <br />
@@ -134,8 +134,8 @@
             <label for="nomeMedico">Nome completo</label>
             <input type="text" name="nomeMedico" id="nomeMedico" style="margin-left: 2px;"/>
 
-            <label for="crmMedico" style="margin-left: 15px;">CRM</label>
-            <input type="text" name="crmMedico" id="crmMedico" style="margin-left: 25px;"/><br /><br />
+            <label for="crm" style="margin-left: 15px;">CRM</label>
+            <input type="text" name="crm" id="crm" style="margin-left: 25px;"/><br /><br />
 
             <label for="emailMedico">Email</label>
             <input type="text" name="emailMedico" id="emailMedico" style="margin-left: 59px;"/>
@@ -143,7 +143,7 @@
             <label for="telefoneMedico" style="margin-left: 15px;">Telefone</label>
             <input type="text" name="telefoneMedico" id="telefoneMedico" style="margin-left: 5px;"/>
 
-            <div id="btCadastrarMedico"><p>Cadastrar</p></div>
+            <div id="btCadastrarMedico" onclick="cadastrarMedico()"><p>Cadastrar</p></div>
             <div id="btCancelarCadastrarMedico"><p>Cancelar</p></div>
 <!--            <input type="submit" value="CADASTRAR"/>-->
         </div>

@@ -255,8 +255,8 @@
                     // Quando o formulário for enviado, essa função é chamada
                     $("#form2").submit(function() {
                         // Colocamos os valores de cada campo em uma variavel para facilitar a manipulaÃ§Ã£o
-                        var nome = $("#nomeMedico").val();
-                        var crm = $("#crmMedico").val();
+                        var nome = $('#nomeMedico').val();
+                        var crm = $('#crm').val();
                         var email = $('#emailMedico').val();
                         var telefone = $('#telefoneMedico').val();
                     
@@ -276,7 +276,7 @@
                             // Se resposta for false, ou seja, nÃ£o ocorreu nenhum erro
                             else {
                                 // Exibe mensagem de sucesso
-                                $("#form2").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />Você receberá em seu email uma senha para acessar os serviços.</h1><br /><button id="novo" onclick="mostra()">Novo cadastro</button></div>');
+                                $("#form2").hide('slow').after('<div id="resp"><h2 id="thx">Cadastro realizado com sucesso!<br />Você receberá em seu email uma senha para acessar os nossos serviços.</h1><br /><button id="novo" onclick="mostra()">Voltar</button></div>');
                                 $('#status').slideUp();
                             }
                         });
@@ -426,7 +426,7 @@
                 
                         
                 $('#btCancelarCadastrarMedico').click(function() {
-                    $('#form1').fadeOut(300, function() {
+                    $('#form2').fadeOut(300, function() {
                         $('#doctors').hide();
                         $('#clientes').hide();
                         $('#exames').animate({height: "200px"});
