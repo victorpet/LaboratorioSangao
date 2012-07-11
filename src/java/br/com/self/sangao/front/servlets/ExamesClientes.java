@@ -4,9 +4,12 @@
  */
 package br.com.self.sangao.front.servlets;
 
+import br.com.self.sangao.coleta.facade.ColetaFacade;
 import br.com.self.sangao.entity.Coleta;
 import br.com.self.sangao.entity.Medico;
 import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.entity.TipoExame;
+import br.com.self.sangao.front.entity.ExameTipoExame;
 import br.com.self.sangao.front.entity.Exames;
 import br.com.self.sangao.paciente.facade.PacienteFacade;
 import java.io.IOException;
@@ -81,21 +84,30 @@ public class ExamesClientes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
+
         String idPaciente = request.getParameter("idPaciente");
         String crmMedico = request.getParameter("crmMedico");
         String data = request.getParameter("data");
-        
+
         String[] exames = request.getParameterValues("array");
-        
+
         Paciente p = new Paciente(Integer.parseInt(idPaciente));
         Medico m = new Medico(crmMedico);
         Coleta c = new Coleta();
         c.setIdPaciente(p);
         c.setIdMedico(m);
-        c.setTipoExame(null);
-        
-       
+
+        ColetaFacade.getInstance().adicionar(c);
+
+        for (int i = 0; i <= exames.length; i++) {
+
+            ExameTipoExame tipo = new ExameTipoExame();
+            tipo.setIdExame(c);
+            tipo.setIdTipoExame(new TipoExame(Integer.parseInt(exames[i])));
+
+            ColetaFacade.getInstance().adicionar(tipo);
+        }
+
 //        Paciente p = new Paciente();
 //        p.setNome(nome);
 //        p.setSexo(sexo);
@@ -104,13 +116,13 @@ public class ExamesClientes extends HttpServlet {
 //        p.setBairro(bairro);
 //        p.setTelefone(telefone1);
 //        p.setTelefone2(telefone2);
-        
+
 //        for (int i = 0; i <= exames.length; i++) {
 //            exam.getExames().add(exames[i]);
 //        }
         PacienteFacade.getInstance().inserirAtualizarRegistro(p);
-        
-        
+
+
     }
 
     /**

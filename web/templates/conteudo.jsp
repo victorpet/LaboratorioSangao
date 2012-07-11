@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="br.com.self.sangao.entity.TipoExame"%>
+<%@page import="br.com.self.sangao.coleta.facade.ColetaFacade"%>
 <div id="exames" >
     <div id="clientes">
         <div class="innerClientes"></div>
@@ -42,11 +45,10 @@
                 <label for="select_exame" style="padding-bottom: 5px;">Selecione os exames</label><br />
                 <select onchange="preencheExames(this.value)" id="select_exame" name="select_exame">
                     <option value="">Selecione</option>
-                    <option value="1">Hemograma</option>
-                    <option value="2">Urina</option>
-                    <option value="3">Fezes</option>
-                    <option value="4">Imunológica completa</option>
-
+                    <% List<TipoExame> list = ColetaFacade.getInstance().getAllTipoExames();%>
+                    <% for (TipoExame exame : list) {%>
+                    <option value="<%=exame.getId()%>"><%=exame.getDescricao()%></option>
+                    <% }%>
                 </select><br /><br />
                 <div id="txtarea">
                 </div> <br />
@@ -145,7 +147,7 @@
 
             <div id="btCadastrarMedico" onclick="cadastrarMedico()"><p>Cadastrar</p></div>
             <div id="btCancelarCadastrarMedico"><p>Cancelar</p></div>
-<!--            <input type="submit" value="CADASTRAR"/>-->
+            <!--            <input type="submit" value="CADASTRAR"/>-->
         </div>
 
     </form>

@@ -4,6 +4,7 @@
  */
 package br.com.self.sangao.entity;
 
+import br.com.self.sangao.front.entity.ExameTipoExame;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.*;
@@ -22,6 +23,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TipoExame.findById", query = "SELECT t FROM TipoExame t WHERE t.id = :id"),
     @NamedQuery(name = "TipoExame.findByDescricao", query = "SELECT t FROM TipoExame t WHERE t.descricao = :descricao")})
 public class TipoExame implements Serializable, Entidade {
+    @OneToMany(mappedBy = "idTipoExame")
+    private Collection<ExameTipoExame> exameTipoExameCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="SEQUENCE")
@@ -98,6 +101,15 @@ public class TipoExame implements Serializable, Entidade {
     @Override
     public String getIndex() {
         return "id";
+    }
+
+    @XmlTransient
+    public Collection<ExameTipoExame> getExameTipoExameCollection() {
+        return exameTipoExameCollection;
+    }
+
+    public void setExameTipoExameCollection(Collection<ExameTipoExame> exameTipoExameCollection) {
+        this.exameTipoExameCollection = exameTipoExameCollection;
     }
     
 }

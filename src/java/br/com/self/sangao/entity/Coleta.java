@@ -4,6 +4,7 @@
  */
 package br.com.self.sangao.entity;
 
+import br.com.self.sangao.front.entity.ExameTipoExame;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -24,18 +25,20 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Coleta.findByDtColeta", query = "SELECT e FROM Coleta e WHERE e.dtColeta = :dtColeta"),
     @NamedQuery(name = "Coleta.findByDtEntrega", query = "SELECT e FROM Coleta e WHERE e.dtEntrega = :dtEntrega")})
 public class Coleta implements Serializable, Entidade {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @SequenceGenerator(name="seq", sequenceName="EXAME_ID_SEQ")
-    @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
-    @Column(name = "id")
-    private Integer id;
     @Column(name = "dt_coleta")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtColeta;
     @Column(name = "dt_entrega")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtEntrega;
+    @OneToMany(mappedBy = "idExame")
+    private Collection<ExameTipoExame> exameTipoExameCollection;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @SequenceGenerator(name="seq", sequenceName="EXAME_ID_SEQ")
+    @GeneratedValue(strategy=GenerationType.AUTO, generator="seq")
+    @Column(name = "id")
+    private Integer id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idExame")
     private Collection<Resultado> resultadoCollection;
     @JoinColumn(name = "tipo_exame", referencedColumnName = "id")
@@ -145,6 +148,15 @@ public class Coleta implements Serializable, Entidade {
     @Override
     public String getIndex() {
         return "id";
+    }
+
+    @XmlTransient
+    public Collection<ExameTipoExame> getExameTipoExameCollection() {
+        return exameTipoExameCollection;
+    }
+
+    public void setExameTipoExameCollection(Collection<ExameTipoExame> exameTipoExameCollection) {
+        this.exameTipoExameCollection = exameTipoExameCollection;
     }
     
 }

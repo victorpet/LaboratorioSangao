@@ -220,14 +220,15 @@
                     $("#logon2").submit(function() {
                         // Colocamos os valores de cada campo em uma variavel para facilitar a manipulaÃ§Ã£o
                         var idPaciente = <%=idPaciente%>;
+                        alert(idPaciente);
                         var crmMedico = $("#crmMedico").val();
                         var data = $("#dataExame").val();
-                        var exames = $('#txtarea').find('div');
+                        var exames = $('#txtarea').find('span');
                         var array = new Array(exames.size());
                         for (var i = 0; i < exames.size(); i++){
-                            alert(($('#txtarea').children().eq(i)).name);
+                            array[i] = ($('#txtarea').children().eq(i)).attr('id');
                         }
-                    
+                    alert(idPaciente);
                         // Exibe mensagem de carregamento
                         $("#status").html("<img src='images/load.gif' alt='Enviando' />");
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
@@ -456,7 +457,7 @@
                         str = $(this).text() + " ";
                     })
                     
-                    $('#txtarea').append("<div class='bt_cancel' id='" + e + "' name='exames' onclick='excluiExame(this.id)'><input type='hidden' name='files[]' id='files[]' value='"+e+"' /><img src='images/cancel.png' /><span name='" + e + "'> " + str + "</span></div>");
+                    $('#txtarea').append("<div class='bt_cancel' id='" + e + "' name='exames' onclick='excluiExame(this.id)'><input type='hidden' name='files[]' id='files[]' value='"+e+"' /><img src='images/cancel.png' /><span id='" + e + "'> " + str + "</span></div>");
                 }
             }
             
