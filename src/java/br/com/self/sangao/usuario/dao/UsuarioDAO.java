@@ -63,4 +63,21 @@ public class UsuarioDAO extends HibernateDAO {
 
         return valid;
     }
+
+    public Usuario getUsuario(String user, String senha) {
+        Usuario valid = null;
+
+        try {
+            Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Usuario.auth");
+            query.setParameter("username", user);
+            query.setParameter("senha", senha);
+            query.setMaxResults(1);
+            valid = (Usuario) query.getSingleResult();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao obter lista de Usuários");
+        }
+
+        return valid;
+    }
 }

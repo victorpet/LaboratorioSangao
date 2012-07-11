@@ -14,10 +14,12 @@
         <input type="password" id="senha" value="" class="roundBordersP"/>
         
         <div class="clear"></div>
+        
+        <a href="#dialog" name="modal" id="btOkExame"><p id="btOkp">OK</p></a>
 
-        <div id="btOkExame" class="roundBordersP">
+<!--        <div id="btOkExame" class="roundBordersP">
             <p id="btOkp">OK</p>
-        </div>
+        </div>-->
 <!--        <input type="submit" value="OK" class="dir">-->
 
     </form>

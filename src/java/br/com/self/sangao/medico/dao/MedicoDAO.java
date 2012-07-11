@@ -46,4 +46,19 @@ public class MedicoDAO extends HibernateDAO {
         }
         return list;
     }
+    
+    public Medico buscaMedicoPorCrm(String crm) {
+
+        Medico m = null;
+
+        try {
+            Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Medico.findByCrm");
+            query.setParameter("crm", crm);
+            m = (Medico) query.getSingleResult();
+
+        } catch (Exception e) {
+            System.out.println("Erro ao obter lista de Medicos");
+        }
+        return m;
+    }
 }

@@ -36,4 +36,8 @@ public class PacienteBO {
     public List<Paciente> getAllPacientes(){
         return dao.getAllPacientes();
     }
+    
+    public Paciente getPacientePorId(Integer id){
+        return dao.getPacientePorId(id);
+    }
 }

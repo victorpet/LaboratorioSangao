@@ -26,4 +26,6 @@ public interface IUsuarioFacade {
     public Usuario select(Integer id);
     
     public void atualizar(Object ob);
+    
+    public Usuario getUsuario(String usuario, String senha);
 }

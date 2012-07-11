@@ -18,4 +18,6 @@ public interface IMedicoFacade {
     public void remover(Integer id);
 
     public Medico select(Integer id);
+    
+    public Medico buscaMedicosPorCrm(String crm);
 }

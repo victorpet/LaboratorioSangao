@@ -60,7 +60,7 @@
     </servlet>
     <servlet>
         <servlet-name>ExamesClientes</servlet-name>
-        <servlet-class>br.com.self.sangao.front.exames.ExamesClientes</servlet-class>
+        <servlet-class>br.com.self.sangao.front.servlets.ExamesClientes</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginCliente</servlet-name>

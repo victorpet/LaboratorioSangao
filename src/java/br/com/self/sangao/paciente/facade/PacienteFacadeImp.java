@@ -44,4 +44,9 @@ public class PacienteFacadeImp implements IPacienteFacade {
     public Paciente getPaciente(Integer id) {
         return bo.getPaciente(id);
     }
+    
+    @Override
+    public Paciente getPacientePorId(Integer id){
+        return bo.getPacientePorId(id);
+    }
 }

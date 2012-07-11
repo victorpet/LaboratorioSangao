@@ -31,10 +31,12 @@
         <script type="text/javascript" src="js/jquery.infieldlabel.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.js"></script>
         <script type="text/javascript" src="js/formSubmit.js"></script>
+        <script type="text/javascript" src="js/galleria-1.2.7.min.js"></script>
+
         <!--        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
 
         <% String sessao = (String) session.getAttribute("logado");
-            String idPaciente = (String) session.getAttribute("id");
+            Integer idPaciente = (Integer) session.getAttribute("id");
             boolean logado = false;
 
             if ("true".equals(sessao)) {
@@ -211,24 +213,75 @@
             function logar(){
                 $('#logon').submit();
             }
+
             
             // when the DOM is ready...
             $(document).ready(function () {
                 
+                $(document).ready(function() {
+
+                    //seleciona os elementos a com atributo name="modal"
+                    $('a[name=modal]').click(function(e) {
+                        //cancela o comportamento padrão do link
+                        e.preventDefault();
+
+                        //armazena o atributo href do link
+                        var id = $(this).attr('href');
+                        
+                        //                         $('#mask, .window').show();
+
+                        //armazena a largura e a altura da tela
+                        var maskHeight = $(document).height();
+                        var maskWidth = $(window).width();
+
+                        //Define largura e altura do div#mask iguais ás dimensões da tela
+                        $('#mask').css({'width':maskWidth,'height':maskHeight});
+
+                        //efeito de transição
+                        $('#mask').fadeIn(1000);
+                        $('#mask').fadeTo("slow",0.8);
+
+                        //armazena a largura e a altura da janela
+                        var winH = $(window).height();
+                        var winW = $(window).width();
+                        //centraliza na tela a janela popup
+                        $(id).css('top',  winH/2-$(id).height()/2);
+                        $(id).css('left', winW/2-$(id).width()/2);
+                        //efeito de transição
+                        $(id).fadeIn(2000);
+                    });
+
+                    //se o botãoo fechar for clicado
+                    $('.close').click(function (e) {
+                        //cancela o comportamento padrão do link
+                        e.preventDefault();
+                        $('#mask, .window').hide();
+                    });
+
+                    //se div#mask for clicado
+                    $('#mask').click(function () {
+                        $(this).hide();
+                        $('.window').hide();
+                    });
+                });
+        
+
+                Galleria.loadTheme('galleria.classic.min.js');
+                Galleria.run('#galleria');
+
                 $(function($) {
                     // Quando o formulário for enviado, essa função é chamada
                     $("#logon2").submit(function() {
                         // Colocamos os valores de cada campo em uma variavel para facilitar a manipulaÃ§Ã£o
                         var idPaciente = <%=idPaciente%>;
-                        alert(idPaciente);
                         var crmMedico = $("#crmMedico").val();
                         var data = $("#dataExame").val();
                         var exames = $('#txtarea').find('span');
                         var array = new Array(exames.size());
                         for (var i = 0; i < exames.size(); i++){
                             array[i] = ($('#txtarea').children().eq(i)).attr('id');
+                            alert(array[i]);
                         }
-                    alert(idPaciente);
                         // Exibe mensagem de carregamento
                         $("#status").html("<img src='images/load.gif' alt='Enviando' />");
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
@@ -251,7 +304,7 @@
                         });
                     });
                 });
-                
+
                 $(function($) {
                     // Quando o formulário for enviado, essa função é chamada
                     $("#form2").submit(function() {
@@ -260,7 +313,7 @@
                         var crm = $('#crm').val();
                         var email = $('#emailMedico').val();
                         var telefone = $('#telefoneMedico').val();
-                    
+
                         // Exibe mensagem de carregamento
                         $("#status").html("<img src='images/load.gif' alt='Enviando' />");
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
@@ -283,7 +336,7 @@
                         });
                     });
                 });
-                
+
                 $(function($) {
                     // Quando o formulário for enviado, essa função é chamada
                     $("#form1").submit(function() {
@@ -298,7 +351,7 @@
                         var email = $("#emailPaciente").val();
                         var usuario = $("#usuarioPaciente").val();
                         var senha = $("#senhaPaciente").val();
-                    
+
                         // Exibe mensagem de carregamento
                         $("#status").html("<img src='images/load.gif' alt='Enviando' />");
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
@@ -322,7 +375,7 @@
                         });
                     });
                 });
-               
+
                 $(function($) {
                     // Quando o formulÃ¡rio for enviado, essa funÃ§Ã£o Ã© chamada
                     $("#logon").submit(function() {
@@ -355,9 +408,9 @@
                         });
                     });
                 });
-                
-                
-                
+
+
+
                 $('#btCadastrar').click(function () {
                     $('#logon').fadeOut(300, function() {
                         $('#exames').animate({height: '270px'});
@@ -366,9 +419,9 @@
                         $('#clientes').fadeIn(300);
                         $('#doctors').fadeIn(300);
                     });
-                    
+
                 });
-                
+
                 $('#clientes').click(function () {
                     $('#form2').fadeOut(function() {
                         $('#form1').fadeIn(300);
@@ -377,9 +430,22 @@
                     $('.innerClientes').css({background: "#55ea55"});
                     $('#form2')[0].reset();
                     $('#content').animate({height: "270px"}, 600);
-                
+
                 });
-            
+
+                //                $('#btOkExame').click(function () {
+                //                    $('#quem-somos').hide();
+                //                    $('#convenios').hide();
+                //                    $('#contato').hide();
+                //                    $('#equipe').hide();
+                //                    $('#logon').hide();
+                //                    $('#form1').hide();
+                //                    $('#logon2').hide();
+                //                    $('#exames').hide('slow');
+                //                    $('#form2').hide();
+                //                    $('#galleria').fadeIn(300);
+                //                });
+
                 $('#doctors').click(function () {
                     $('#form1').fadeOut(function(){
                         $('#logon').hide();
@@ -391,8 +457,8 @@
                     $('#form1')[0].reset();
                     $('#content').animate({height: "160px"}, 600);
                 });
-                
-                
+
+
                 $('#contatoEndereco').click(function () {
                     //                    $('.contatoTelefonico').hide(300);
                     //                    $('.contatoForm').hide(300);
@@ -404,28 +470,28 @@
                         map.setCenter(center);
                     });
                     $('#fechar').fadeIn(1000);
-                
+
                 });
-                
+
                 $('#fechar').click(function() {
                     $('#fechar').fadeOut(600);
                     $('#map').hide('slow');
                     $('#contato').animate({height: '400px'}, 600);
                     $('#contato .outer').animate({height: '400px'}, 600);
                 });
-                
+
                 $('#contatoForm').click( function () {
                     if ($('#formSend').css('display') == 'none'){
                         $('#formSend').show(800); 
                     }
                 });
-                
+
                 $('#cancelarContato').click( function () {
                     $('#form3')[0].reset();
                     $('#formSend').hide(600);
                 });
-                
-                        
+
+
                 $('#btCancelarCadastrarMedico').click(function() {
                     $('#form2').fadeOut(300, function() {
                         $('#doctors').hide();
@@ -435,7 +501,7 @@
                         $('#logon').fadeIn(300);
                     });
                 });
-                
+
                 $('#btCancelarCadastrarPaciente').click( function() {
                     $('#form1').fadeOut(300, function () {
                         $('#doctors').hide();
@@ -444,57 +510,57 @@
                         $('#content').animate({height: "200px"});
                         $('#logon').fadeIn(300);
                     });
-                            
+
                 });
                 //
             });
-            
+
             function preencheExames(e) {
                 if (e != ""){
                     var str = "";
-                    
+
                     $("#select_exame option:selected").each(function () {
                         str = $(this).text() + " ";
                     })
-                    
+
                     $('#txtarea').append("<div class='bt_cancel' id='" + e + "' name='exames' onclick='excluiExame(this.id)'><input type='hidden' name='files[]' id='files[]' value='"+e+"' /><img src='images/cancel.png' /><span id='" + e + "'> " + str + "</span></div>");
                 }
             }
-            
+
             $("#select_exame").click(function () {
                 $('#select_exame').show('slow');
             });
-            
+
             $("#teste").click(function () {
                 $('#slider').hide('slow');
             });
-            
-            
-            
+
+
+
             function esconder(e){
                 $('#' + e).hide('slow');
             }
-            
+
             function resize (){
 
                 // reduz a largura e altura da imagem
                 $('#menu').animate({height: "30px"}, 600);
             }
-            
+
             function fadein(e){
                 $('#' + e).hide(300);
             }
-            
+
             function fadeout(e){
                 $('#' + e).hide(300);
             }
-            
-            
+
+
             function mostrar(e){
-                
+
                 if (e == 'exames'){
-                    
-                    
+
+
                     if (<%=logado%>){
                         //                        alert('logado');
                         $('#quem-somos').hide();
@@ -552,13 +618,13 @@
                     $('#equipe').show('slow');
                 }
                 //                resize();
-                
+
             }
-            
+
             function excluiExame(e) {
                 $('#' + e).remove();
             }
-            
+
             function mostra(){
                 $('#form1')[0].reset();
                 $('#form2')[0].reset();
@@ -568,10 +634,14 @@
                 $('#exames').animate({height: "200px"});
                 $('#content').animate({height: "200px"});
             }
+
+
+
         </script>
 
     </head>
     <body>
+
 
         <div class="banner">
             <img src="images/back.jpg" class="reflect rheight80 ropacity25" alt=""/>

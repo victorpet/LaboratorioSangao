@@ -51,5 +51,10 @@ public class UsuarioFacadeImp implements IUsuarioFacade{
         bo.atualizar(ob);
     }
 
+    @Override
+    public Usuario getUsuario(String usuario, String senha) {
+        return bo.getUsuario(senha, senha);
+    }
+
     
 }

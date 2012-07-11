@@ -50,4 +50,18 @@ public class PacienteDAO extends HibernateDAO {
         }
         return list;
     }
+    
+    public Paciente getPacientePorId(Integer id) {
+        EntityManager em = PersistenceManager.getInstance().getConnection();
+        Paciente p = null;
+        try {
+            Query query = PersistenceManager.getInstance().getConnection().createNamedQuery("Paciente.findById");
+            p = (Paciente) query.getSingleResult();
+        } catch (Exception e) {
+            log.error("Erro ao selectionar pacientes", e);
+        } finally {
+            em.close();
+        }
+        return p;
+    }
 }

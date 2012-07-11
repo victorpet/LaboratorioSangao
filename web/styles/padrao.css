@@ -351,6 +351,10 @@ tbody{
     background: #0e7709; 
     cursor: pointer;
     float: right;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    text-decoration: none;
 }
 
 #btOkp {
@@ -361,6 +365,7 @@ tbody{
     font-size: 18px;
     margin-top: 4px;
     font-style: normal;
+
 }
 
 .roundBordersP{
@@ -1430,7 +1435,7 @@ fieldset {
     margin-top: -23px;
     margin-left: 320px;
     width: 60px;
-    height: 20px;
+    height: 22px;
     background: #0e7709;
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1443,7 +1448,7 @@ fieldset {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
-    padding-top: 2px;
+    padding-top: 3px;
 }
 
 #btLogin2{
@@ -1485,7 +1490,8 @@ fieldset {
     margin-top: -30px;
     color: #0e7709;
     /*    font-weight: bold;*/
-    font-size: 18px;
+    font-size: 16px;
+    font-style: italic;
 }
 
 #fimSessao{
@@ -1534,4 +1540,52 @@ fieldset {
     text-align: center;
     margin-top: 5px;
     font-weight: bold;
+}
+
+#galleria{
+    /*    display: none;*/
+    position: absolute;
+    width: 950px;
+    height: 500px;
+    /*    margin: auto;*/
+    z-index: 20000;
+}
+
+#mask {position:absolute;
+       z-index:9000;
+       background-color:#000;
+       display:none;
+       top: 0;
+       left: 0;
+}
+
+#boxes .window {
+    position:absolute;
+    width:951px;
+    height:501px;
+    display:none;
+    z-index:9999;
+    padding:20px;
+}
+
+#boxes #dialog {
+    width:951px;
+    height:501px;
+    background: #CCC;
+}
+
+/* posiciona o link para fechar a janela */
+.close {
+    display:block;
+    float: right;
+    text-align:right;
+    position: absolute;
+    text-decoration: none;
+    color: #999999;
+    z-index: 50000;
+    padding: 10px;
+}
+
+.close:hover{
+    color: white;
 }

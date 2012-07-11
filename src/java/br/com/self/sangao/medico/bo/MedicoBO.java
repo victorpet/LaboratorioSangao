@@ -47,4 +47,8 @@ public class MedicoBO {
     public List<Medico> getAllMedicos(){
         return dao.getAllMedicos();
     }
+    
+    public Medico buscaMedicosPorCrm(String crm){
+        return dao.buscaMedicoPorCrm(crm);
+    }
 }

@@ -106,7 +106,7 @@ public abstract class HibernateDAO<T> {
             newO = (T) query.getSingleResult();
         } catch (Exception e) {
             t.rollback();
-            log.error("Erro ao remover objeto", e);
+            log.error("Erro ao buscar objeto", e);
         } finally {
             em.close();
         }

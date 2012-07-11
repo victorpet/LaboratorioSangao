@@ -320,5 +320,20 @@
     </div>
 </div>
 
-
-
+<div id="boxes">
+    <div id="dialog" class="window">
+        <!-- Botão para fechar a janela tem class="close" -->
+        <a href="#" class="close">Fechar [X]</a>
+        <div id="galleria">
+            <img src="resultados/images/paciente1/123.gif" />
+            <img src="resultados/images/paciente1/222.gif" />
+            <img src="resultados/images/paciente1/134.gif" />
+            <img src="resultados/images/paciente1/789.gif" />
+            <img src="resultados/images/paciente1/456.gif" />
+            <img src="resultados/images/paciente1/654.gif" />
+            <img src="resultados/images/paciente1/012.gif" />
+        </div>
+    </div>
+    <div id="mask">
+    </div>
+</div>

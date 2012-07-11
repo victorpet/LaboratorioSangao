@@ -23,4 +23,6 @@ public interface IPacienteFacade {
     public List<Paciente> getAllPacientes();
     
     public Paciente getPaciente(Integer id);
+    
+    public Paciente getPacientePorId(Integer id);
 }

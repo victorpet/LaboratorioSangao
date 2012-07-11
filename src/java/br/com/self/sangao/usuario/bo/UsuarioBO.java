@@ -46,4 +46,8 @@ public class UsuarioBO {
     public List<Object> select() {
         return dao.select();
     }
+    
+    public Usuario getUsuario(String user, String senha){
+        return dao.getUsuario(user, senha);
+    }
 }

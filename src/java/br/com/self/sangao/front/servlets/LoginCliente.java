@@ -89,20 +89,16 @@ public class LoginCliente extends HttpServlet {
         String usuario = request.getParameter("usuarioCliente");
         String senha = request.getParameter("senhaCliente");
 
-        Usuario user = new Usuario();
-        user.setUsername(usuario);
-        user.setSenha(senha);
-
-        boolean valid = UsuarioFacade.getInstance().isValid(user);
+        Usuario valid = UsuarioFacade.getInstance().getUsuario(usuario, senha);
         HttpSession sessao = request.getSession();
 
 //        JOptionPane.showMessageDialog(null, "login ok, retornou " + valid);
 
-        if (valid) {
+        if (valid != null) {
 
             sessao.setAttribute("logado", "true");
-            sessao.setAttribute("nome", user.getUsername());
-            sessao.setAttribute("id", user.getId());
+            sessao.setAttribute("nome", valid.getUsername());
+            sessao.setAttribute("id", valid.getId());
 
 //            response.getWriter().print("login ok");
 //            out.print(false);

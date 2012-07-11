@@ -1,6 +1,7 @@
 package br.com.self.sangao.medico.facade;
 
 import br.com.self.sangao.entity.Medico;
+import br.com.self.sangao.entity.Paciente;
 import br.com.self.sangao.medico.bo.MedicoBO;
 import java.util.List;
 
@@ -42,5 +43,10 @@ public class MedicoFacadeImp implements IMedicoFacade {
     @Override
     public Medico select(Integer id) {
         return bo.select(id);
+    }
+
+    @Override
+    public Medico buscaMedicosPorCrm(String crm) {
+        return bo.buscaMedicosPorCrm(crm);
     }
 }
