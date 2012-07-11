@@ -997,7 +997,7 @@ fieldset {
     width: 90px;
     height: 27px;
     padding-top: 13px;
-    background: orange;
+    background: #55ea55;
     position: absolute;
     margin-top: -13px;
     border-radius: 5px;
@@ -1012,7 +1012,7 @@ fieldset {
     width: 90px;
     height: 27px;
     padding-top: 13px;
-    background: #55ea55;
+    background: orange;
     position: absolute;
     margin-top: -13px;
     /*    margin-left: 120px;*/
@@ -1492,4 +1492,44 @@ fieldset {
     color: #EE0000;
     font-size: 12px;
     text-decoration: none;
+}
+
+#btCadastrarMedico{
+    width: 120px;
+    height: 25px;
+    background: #0e7709;
+    float: right;
+    margin-right: 65px;
+    margin-top: -40px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#btCadastrarMedico p {
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#btCancelarCadastrarMedico{
+    width: 120px;
+    height: 25px;
+    background: orangered;
+    float: right;
+    margin-right: 65px;
+    margin-top: -5px;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#btCancelarCadastrarMedico p {
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
 }

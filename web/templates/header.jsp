@@ -4,6 +4,7 @@
     Author     : Prado
 --%>
 
+<%@page import="br.com.self.sangao.front.servlets.LoginCliente"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="br.com.self.sangao.entity.Usuario"%>
 <%@page import="br.com.self.sangao.usuario.facade.UsuarioFacade"%>
@@ -29,6 +30,7 @@
         <script type="text/javascript" src="js/jquery.serialScroll-1.2.2-min.js"></script>
         <script type="text/javascript" src="js/jquery.infieldlabel.min.js"></script>
         <script type="text/javascript" src="js/jquery.validate.js"></script>
+        <script type="text/javascript" src="js/formSubmit.js"></script>
         <!--        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
 
         <% String sessao = (String) session.getAttribute("logado");
@@ -164,6 +166,10 @@
                 $('#logon').submit();
             }
             
+            function cadastrarMedico(){
+                $('#form2').submit();
+            }
+            
             function refill(e){
                 
                 if (document.getElementById(e).value == ""){
@@ -196,6 +202,14 @@
             
             function submeterExame(){
                 $('#logon2').submit();
+            }
+            
+            function submeter(){
+                $('#form1').submit();
+            }
+                
+            function logar(){
+                $('#logon').submit();
             }
             
             // when the DOM is ready...
@@ -237,9 +251,37 @@
                     });
                 });
                 
-                function submeter(){
-                    $('#form1').submit();
-                }
+                $(function($) {
+                    // Quando o formulário for enviado, essa função é chamada
+                    $("#form2").submit(function() {
+                        // Colocamos os valores de cada campo em uma variavel para facilitar a manipulaÃ§Ã£o
+                        var nome = $("#nomeMedico").val();
+                        var crm = $("#crmMedico").val();
+                        var email = $('#emailMedico').val();
+                        var telefone = $('#telefoneMedico').val();
+                    
+                        // Exibe mensagem de carregamento
+                        $("#status").html("<img src='images/load.gif' alt='Enviando' />");
+                        // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
+                        $.post('Doctors', {nome: nome, crm: crm, email: email, telefone: telefone}, 
+                        function(resposta) {
+                            // Quando terminada a requisiÃ§Ã£o
+                            // Exibe a div status
+                            $("#status").slideDown();
+                            // Se a resposta Ã© um erro
+                            if (resposta != false) {
+                                // Exibe o erro na div
+                                $("#status").html(resposta);
+                            } 
+                            // Se resposta for false, ou seja, nÃ£o ocorreu nenhum erro
+                            else {
+                                // Exibe mensagem de sucesso
+                                $("#form2").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />Você receberá em seu email uma senha para acessar os serviços.</h1><br /><button id="novo" onclick="mostra()">Novo cadastro</button></div>');
+                                $('#status').slideUp();
+                            }
+                        });
+                    });
+                });
                 
                 $(function($) {
                     // Quando o formulário for enviado, essa função é chamada
@@ -259,8 +301,8 @@
                         // Exibe mensagem de carregamento
                         $("#status").html("<img src='images/load.gif' alt='Enviando' />");
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
-                        $.post('ExamesClientes', {nome: nome, sexo: sexo, endereco: endereco, bairro: bairro, cidade: cidade, 
-                        estado: estado, telefone: telefone, email: email, usuario: usuario, senha: senha}, 
+                        $.post('Clientes', {nome: nome, sexo: sexo, endereco: endereco, bairro: bairro, cidade: cidade, 
+                            estado: estado, telefone: telefone, email: email, usuario: usuario, senha: senha}, 
                         function(resposta) {
                             // Quando terminada a requisiÃ§Ã£o
                             // Exibe a div status
@@ -273,21 +315,17 @@
                             // Se resposta for false, ou seja, nÃ£o ocorreu nenhum erro
                             else {
                                 // Exibe mensagem de sucesso
-                                $("#form1").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />A partir de agora vocÃª jÃ¡ pode agendar seus exames on-line.</h1><br /><button id="novo" onclick="mostra()">Agendar</button></div>');
+                                $("#form1").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />A partir de agora você já pode agendar seus exames on-line.</h1><br /><button id="novo" onclick="mostra()">Fazer login</button></div>');
                                 $('#status').slideUp();
                             }
                         });
                     });
                 });
-                
-                function logar(){
-                    $('#logon').submit();
-                }
-                
-                
+               
                 $(function($) {
                     // Quando o formulÃ¡rio for enviado, essa funÃ§Ã£o Ã© chamada
                     $("#logon").submit(function() {
+                        alert("Entrou no submit");
                         // Colocamos os valores de cada campo em uma vÃ¡riavel para facilitar a manipulaÃ§Ã£o
                         var usuario = $("#usuarioCliente").val();
                         var senha = $("#senhaCliente").val();
@@ -296,22 +334,22 @@
                         // Fazemos a requisÃ£o ajax com o arquivo envia.php e enviamos os valores de cada campo atravÃ©s do mÃ©todo POST
                         $.post('LoginCliente', {usuario: usuario, senha: senha}, 
                         function(resposta) {
-                            alert(resposta);
+                            //                            alert(resposta);
                             // Quando terminada a requisiÃ§Ã£o
                             // Exibe a div status
                             $("#status").slideDown();
                             // Se a resposta Ã© um erro
                             if (resposta != false) {
-                                alert('false');
+                                alert("true");
                                 // Exibe o erro na div
                                 //                                $("#status").html(resposta);
                             } 
                             // Se resposta for false, ou seja, nÃ£o ocorreu nenhum erro
                             else {
                                 // Exibe mensagem de sucesso
-                                alert('true');
-                                //                                $("#form1").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />A partir de agora vocÃª jÃ¡ pode agendar seus exames on-line.</h1><br /><button id="novo" onclick="mostra()">Agendar</button></div>');
-                                //                                $('#status').slideUp();
+                                alert('false');
+                                $("#form1").hide('slow').after('<div id="resp"><h1 id="thx">Cadastro realizado com sucesso!<br />A partir de agora vocÃª jÃ¡ pode agendar seus exames on-line.</h1><br /><button id="novo" onclick="mostra()">Agendar</button></div>');
+                                $('#status').slideUp();
                             }
                         });
                     });
@@ -334,8 +372,8 @@
                     $('#form2').fadeOut(function() {
                         $('#form1').fadeIn(300);
                     });
-                    $('.innerClientes').css({background: "darkorange"});
-                    $('.innerDoctors').css({background: "#55ea55"});
+                    $('.innerDoctors').css({background: "darkorange"});
+                    $('.innerClientes').css({background: "#55ea55"});
                     $('#form2')[0].reset();
                     $('#content').animate({height: "270px"}, 600);
                 
@@ -343,10 +381,12 @@
             
                 $('#doctors').click(function () {
                     $('#form1').fadeOut(function(){
+                        $('#logon').hide();
+                        $('#logon2').hide();
                         $('#form2').fadeIn(300);
                     });
-                    $('.innerDoctors').css({background: "darkorange"});
-                    $('.innerClientes').css({background: "#55ea55"});
+                    $('.innerClientes').css({background: "darkorange"});
+                    $('.innerDoctors').css({background: "#55ea55"});
                     $('#form1')[0].reset();
                     $('#content').animate({height: "160px"}, 600);
                 });
@@ -384,8 +424,21 @@
                     $('#formSend').hide(600);
                 });
                 
+                        
+                $('#btCancelarCadastrarMedico').click(function() {
+                    $('#form1').fadeOut(300, function() {
+                        $('#doctors').hide();
+                        $('#clientes').hide();
+                        $('#exames').animate({height: "200px"});
+                        $('#content').animate({height: "200px"});
+                        $('#logon').fadeIn(300);
+                    });
+                });
+                
                 $('#btCancelarCadastrarPaciente').click( function() {
                     $('#form1').fadeOut(300, function () {
+                        $('#doctors').hide();
+                        $('#clientes').hide();
                         $('#exames').animate({height: "200px"});
                         $('#content').animate({height: "200px"});
                         $('#logon').fadeIn(300);
@@ -439,23 +492,32 @@
             function mostrar(e){
                 
                 if (e == 'exames'){
-                    $('#quem-somos').hide('slow');
-                    $('#convenios').hide('slow');
-                    $('#contato').hide('slow');
-                    $('#equipe').hide('slow');
+                    
                     
                     if (<%=logado%>){
                         //                        alert('logado');
+                        $('#quem-somos').hide();
+                        $('#convenios').hide();
+                        $('#contato').hide();
+                        $('#equipe').hide();
                         $('#logon').hide();
+                        $('#form1').hide();
                         $('#logon2').show();
                         $('#exames').show('slow');
                         $('#exames').animate({height: "250px"});
                         $('#content').animate({height: "250px"});
                     } else {
                         //                        alert('não logado');
+                        $('#quem-somos').hide();
+                        $('#convenios').hide();
+                        $('#contato').hide();
+                        $('#equipe').hide();
                         $('#logon2').hide();
+                        $('#form1').hide();
                         $('#logon').show();
                         $('#exames').show('slow');
+                        $('#exames').animate({height: "200px"});
+                        $('#content').animate({height: "200px"});
                     }
                 } else if (e == 'quem-somos') {
                     $('#exames').hide('slow');
@@ -498,9 +560,12 @@
             
             function mostra(){
                 $('#form1')[0].reset();
+                $('#form2')[0].reset();
                 $('#thx').remove();
                 $("#novo").remove();
-                $("#form1").show('slow');
+                $("#logon").show('slow');
+                $('#exames').animate({height: "200px"});
+                $('#content').animate({height: "200px"});
             }
         </script>
 

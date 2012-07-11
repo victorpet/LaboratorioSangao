@@ -22,6 +22,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Medico.findById", query = "SELECT m FROM Medico m WHERE m.id = :id"),
     @NamedQuery(name = "Medico.findByNome", query = "SELECT m FROM Medico m WHERE m.nome = :nome")})
 public class Medico implements Serializable, Entidade {
+    @Column(name = "telefone")
+    private String telefone;
+    @Column(name = "email")
+    private String email;
     private static final long serialVersionUID = 1L;
     @Id
     @SequenceGenerator(name="seq", sequenceName="medico_id_seq")
@@ -119,6 +123,22 @@ public class Medico implements Serializable, Entidade {
     @Override
     public String getIndex() {
         return "id";
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
 }

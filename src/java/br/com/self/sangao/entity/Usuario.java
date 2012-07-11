@@ -57,6 +57,11 @@ public class Usuario implements Serializable, Entidade {
         this.id = id;
         this.nome = nome;
     }
+    
+    public Usuario(String username, String senha){
+        this.username = username;
+        this.senha = senha;
+    }
 
     public Integer getId() {
         return id;

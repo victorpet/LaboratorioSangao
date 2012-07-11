@@ -4,6 +4,10 @@
  */
 package br.com.self.sangao.front.servlets;
 
+import br.com.self.sangao.entity.Paciente;
+import br.com.self.sangao.entity.Usuario;
+import br.com.self.sangao.paciente.facade.PacienteFacade;
+import br.com.self.sangao.usuario.facade.UsuarioFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,23 +33,23 @@ public class Clientes extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Clientes</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Clientes at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+//        response.setContentType("text/html;charset=UTF-8");
+//        PrintWriter out = response.getWriter();
+//        try {
+//            /*
+//             * TODO output your page here. You may use following sample code.
+//             */
+//            out.println("<html>");
+//            out.println("<head>");
+//            out.println("<title>Servlet Clientes</title>");
+//            out.println("</head>");
+//            out.println("<body>");
+//            out.println("<h1>Servlet Clientes at " + request.getContextPath() + "</h1>");
+//            out.println("</body>");
+//            out.println("</html>");
+//        } finally {
+//            out.close();
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -78,17 +82,46 @@ public class Clientes extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
 
-        String nome = request.getParameter("nomePaciente");
-        String sexo = request.getParameter("sex");
-        String endereco = request.getParameter("enderecoPaciente");
-        String bairro = request.getParameter("bairroPaciente");
-        String cidade = request.getParameter("cidadePaciente");
-        String estado = request.getParameter("estadoPaciente");
-        String telefone1 = request.getParameter("telefone1Paciente");
-        String email = request.getParameter("emailPaciente");
-        String usuario = request.getParameter("usuarioPaciente");
-        String senha = request.getParameter("senhaPaciente");
+        String nome = request.getParameter("nome");
+        String sexo = request.getParameter("sexo");
+        String endereco = request.getParameter("endereco");
+        String bairro = request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String estado = request.getParameter("estado");
+        String telefone1 = request.getParameter("telefone");
+        String email = request.getParameter("email");
+        String usuario = request.getParameter("usuario");
+        String senha = request.getParameter("senha");
         
+        System.out.println(nome);
+        System.out.println(sexo);
+        System.out.println(endereco);
+        System.out.println(bairro);
+        System.out.println(cidade);
+        System.out.println(estado);
+        System.out.println(telefone1);
+        System.out.println(email);
+        System.out.println(usuario);
+        System.out.println(senha);
+        
+        Paciente p = new Paciente();
+        p.setNome(nome);
+        p.setSexo(sexo);
+        p.setEndereco(endereco);
+        p.setBairro(bairro);
+        p.setCidade(cidade);
+        p.setEstado(estado);
+        p.setTelefone(telefone1);
+        p.setEmail(email);
+        
+        PacienteFacade.getInstance().inserirAtualizarRegistro(p);
+        
+        Usuario user = new Usuario();
+        user.setNome(nome);
+        user.setUsername(usuario);
+        user.setSenha(senha);
+        
+        UsuarioFacade.getInstance().adicionar(user);
 
     }
 

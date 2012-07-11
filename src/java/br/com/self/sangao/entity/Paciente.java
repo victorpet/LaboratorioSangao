@@ -26,9 +26,21 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Paciente.findByEndereco", query = "SELECT p FROM Paciente p WHERE p.endereco = :endereco"),
     @NamedQuery(name = "Paciente.findByTelefone", query = "SELECT p FROM Paciente p WHERE p.telefone = :telefone")})
 public class Paciente implements Serializable, Entidade {
-    @Column(name = "dt_nascimento")
+    @Column(name =     "dt_nascimento")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dtNascimento;
+    @Column(name = "estado")
+    private String estado;
+    @Column(name = "cidade")
+    private String cidade;
+    @Column(name = "bairro")
+    private String bairro;
+    @Column(name = "telefone2")
+    private String telefone2;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "sexo")
+    private String sexo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
     private Collection<Convenio> convenioCollection;
     private static final long serialVersionUID = 1L;
@@ -144,6 +156,54 @@ public class Paciente implements Serializable, Entidade {
     @Override
     public String getIndex() {
         return "id";
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getTelefone2() {
+        return telefone2;
+    }
+
+    public void setTelefone2(String telefone2) {
+        this.telefone2 = telefone2;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
 }

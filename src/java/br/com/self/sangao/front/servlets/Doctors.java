@@ -4,24 +4,20 @@
  */
 package br.com.self.sangao.front.servlets;
 
-import br.com.self.sangao.entity.Usuario;
-import br.com.self.sangao.usuario.facade.UsuarioFacade;
-import br.com.self.sangao.utils.Utils;
+import br.com.self.sangao.entity.Medico;
+import br.com.self.sangao.medico.facade.MedicoFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author prado
  */
-public class LoginCliente extends HttpServlet {
+public class Doctors extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -43,10 +39,10 @@ public class LoginCliente extends HttpServlet {
 //             */
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet LoginCliente</title>");            
+//            out.println("<title>Servlet Doctors</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet LoginCliente at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet Doctors at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
 //        } finally {            
@@ -83,43 +79,19 @@ public class LoginCliente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        PrintWriter out = response.getWriter();
-        
 
-        String usuario = request.getParameter("usuarioCliente");
-        String senha = request.getParameter("senhaCliente");
+        String nome = request.getParameter("nome");
+        String crm = request.getParameter("crm");
+        String email = request.getParameter("email");
+        String telefone = request.getParameter("telefone");
 
-        Usuario user = new Usuario();
-        user.setUsername(usuario);
-        user.setSenha(senha);
+        Medico m = new Medico();
+        m.setCrm(crm);
+        m.setNome(nome);
+        m.setEmail(email);
+        m.setTelefone(telefone);
 
-        boolean valid = UsuarioFacade.getInstance().isValid(user);
-        HttpSession sessao = request.getSession();
-
-//        JOptionPane.showMessageDialog(null, "login ok, retornou " + valid);
-
-        if (valid) {
-
-            sessao.setAttribute("logado", "true");
-            sessao.setAttribute("nome", user.getUsername());
-            sessao.setAttribute("id", user.getId());
-
-//            response.getWriter().print("login ok");
-//            out.print(false);
-
-//            response.sendRedirect(Utils.ABSOLUTEPATH + "index.jsp");
-        } else {
-            sessao.setAttribute("logado", "false");
-//            out.print("Usuario e senha invalidas!");
-        }
-        
-//        request.setAttribute("resultado", "ok");
-//        response.sendRedirect("/LaboratorioSangao/login.jsp");
-//        }
-
-//        RequestDispatcher dispatcher = request.getRequestDispatcher(Utils.ABSOLUTEPATH + "index.jsp");
-//        dispatcher.forward(request, response);
-        response.sendRedirect(Utils.ABSOLUTEPATH + "index.jsp");
+        MedicoFacade.getInstance().adicionar(m);
     }
 
     /**

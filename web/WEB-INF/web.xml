@@ -21,6 +21,10 @@
         <servlet-name>Clientes</servlet-name>
         <url-pattern>/Clientes</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Doctors</servlet-name>
+        <url-pattern>/Doctors</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>
             index.jsp
@@ -69,6 +73,10 @@
     <servlet>
         <servlet-name>Clientes</servlet-name>
         <servlet-class>br.com.self.sangao.front.servlets.Clientes</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Doctors</servlet-name>
+        <servlet-class>br.com.self.sangao.front.servlets.Doctors</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Pacientes</servlet-name>

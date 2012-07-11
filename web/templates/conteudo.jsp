@@ -10,7 +10,7 @@
     <div id="content">
     </div>
 
-    <form class="logon" id="logon" action="LoginCliente" method="POST">
+    <form class="logon" id="logon" method="POST" action="LoginCliente">
 
         <fieldset id="loginFieldSet" style="float: left" >
             <legend>Login</legend>
@@ -143,7 +143,9 @@
             <label for="telefoneMedico" style="margin-left: 15px;">Telefone</label>
             <input type="text" name="telefoneMedico" id="telefoneMedico" style="margin-left: 5px;"/>
 
-            <input type="submit" value="CADASTRAR"/>
+            <div id="btCadastrarMedico"><p>Cadastrar</p></div>
+            <div id="btCancelarCadastrarMedico"><p>Cancelar</p></div>
+<!--            <input type="submit" value="CADASTRAR"/>-->
         </div>
 
     </form>
